@@ -166,5 +166,10 @@ fixtures = [{"dt": "Custom Field", "filters": [["name", "in", [
 		"en",
 		"ar"
     ]]]},
-    {"dt": "Top Bar Item"}
+    {"dt": "Top Bar Item"},
+    {"dt": "Coming Soon Settings"},
+    {"dt": "Website About Us Settings"},
+    {"dt": "Website Contact Us Settings"},
+    {"dt": "Unit Usage"},
+    {"dt": "Property Features"}
 	]

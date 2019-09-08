@@ -1,0 +1,22 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Unit Usage",
+  "modified": "2019-09-07 13:39:23.403731",
+  "name": "Residential",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "unit_usage": "Residential"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Unit Usage",
+  "modified": "2019-09-07 13:43:35.617121",
+  "name": "Commercial",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "unit_usage": "Commercial"
+ }
+]

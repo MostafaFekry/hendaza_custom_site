@@ -94,7 +94,7 @@
 				<div class="col-lg-{% if image%}6{% else %}12 center{% endif %} p-0">
 					<header id="header" class="p-4 p-md-2">
 						<a href="{{ url_prefix }}{{ home_page or "/"}}" class=" font-weight-bold text-4 text-decoration-none">
-						{{ brand_html or (frappe.get_hooks("brand_html") or ["Home"])[0] }}{{ slogan or "" }}
+						{{ brand_html or (frappe.get_hooks("brand_html") or ["Home"])[0] or "<img src='/files/Hendaza-Logo-En.png' style='max-height:80px'  alt='HENDAZA for Investment & Urban Development'  data-change-src='/files/Hendaza-Final-Logo-En.png'>" }}{{ slogan or "" }}
 						</a>
 						<!--<a href="index.html">
 							<img alt="EZ" width="127" height="20" src="img/logo.png" class="appear-animation" data-appear-animation="fadeInRightShorter" data-plugin-options="{'accY': 100}">

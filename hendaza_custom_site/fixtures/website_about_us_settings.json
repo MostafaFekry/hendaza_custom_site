@@ -1,0 +1,53 @@
+[
+ {
+  "company_history": [
+   {
+    "highlight": null,
+    "image": "/files/history-2.jpg",
+    "old_year": "2017",
+    "parent": "Website About Us Settings",
+    "parentfield": "company_history",
+    "parenttype": "Website About Us Settings",
+    "title": "New Partners",
+    "year": "2018"
+   },
+   {
+    "highlight": null,
+    "image": "/files/history-1.jpg",
+    "old_year": "2016",
+    "parent": "Website About Us Settings",
+    "parentfield": "company_history",
+    "parenttype": "Website About Us Settings",
+    "title": "Foundation",
+    "year": "2017"
+   }
+  ],
+  "company_history_heading": "Our History",
+  "company_introduction": "<h1 style=\"text-align: center;\"><strong style=\"background-color: rgb(255, 255, 255); color: rgb(33, 37, 41);\">We are Hendaza, We </strong><strong style=\"color: rgb(33, 37, 41);\">Build </strong><strong style=\"color: rgb(33, 37, 41); background-color: rgb(255, 255, 255);\">Properties</strong></h1><div style=\"text-align: center;\"><span style=\"color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum, nulla vel pellentesque consequat, ante nulla hendrerit arcu, ac tincidunt mauris lacus sed leo.</span></div><div style=\"text-align: center;\"><span style=\"color: rgb(119, 119, 119); background-color: rgb(255, 255, 255);\">\ufeff</span></div><div><br></div>",
+  "docstatus": 0,
+  "doctype": "Website About Us Settings",
+  "footer": null,
+  "history_description": "How we started",
+  "light_description": "Hendaza Investment & Urban Development",
+  "mission_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum, nulla vel pellentesque consequat, ante nulla hendrerit arcu.",
+  "mission_title": "Our Mission",
+  "modified": "2019-09-07 12:04:58.020506",
+  "name": "Website About Us Settings",
+  "page_header_background": "About Us Header Background",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "pic_1": "/files/our-office-4.jpg",
+  "pic_2": "/files/our-office-5.jpg",
+  "pic_3": "/files/our-office-7.jpg",
+  "team_members": [],
+  "team_members_heading": null,
+  "title": "About Us",
+  "vision_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum, nulla vel pellentesque consequat, ante nulla hendrerit arcu.",
+  "vision_title": "Our Vision",
+  "who_we_are_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enikklam id valorem ipsum dolor sit amet, consectetur adipiscinLorem ipsum dolor sit amet, consectetur adipiscing elit.<br><br>\nPhasellus blandit massa enim. Nullam id varius elit. blandit massa enim  d varius blandit massa enimariusi d varius elit. blandit massa enimariud varius elit. blandit massa enimariusisi ariusius.",
+  "who_we_are_title": "<strong class=\"font-weight-extra-bold text-color-primary\">Who </strong>We Are",
+  "why_us_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce elementum, nulla vel pellentesque consequat, ante nulla hendrerit arcu.",
+  "why_us_title": "Why Us"
+ }
+]

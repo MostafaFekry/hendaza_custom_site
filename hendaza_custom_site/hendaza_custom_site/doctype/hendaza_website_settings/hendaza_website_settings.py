@@ -7,4 +7,6 @@ from __future__ import unicode_literals
 from frappe.model.document import Document
 
 class HendazaWebsiteSettings(Document):
-	pass
+	def on_update(self):
+		from frappe.website.render import clear_cache
+		clear_cache("index")

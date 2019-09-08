@@ -1,0 +1,101 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Bathroom",
+  "icon": "fas fa-restroom",
+  "modified": "2019-09-08 16:25:28.692324",
+  "name": "Bathroom",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Bedrooms",
+  "icon": "fas fa-bed",
+  "modified": "2019-09-08 16:26:44.049822",
+  "name": "Bedrooms",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Area",
+  "icon": "fas fa-chart-area",
+  "modified": "2019-09-08 16:27:52.670888",
+  "name": "Area",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Price Range",
+  "icon": "fas fa-dollar-sign",
+  "modified": "2019-09-08 16:28:13.497928",
+  "name": "Price Range",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Down Payment",
+  "icon": "Down Payment",
+  "modified": "2019-09-08 16:28:38.229559",
+  "name": "Down Payment",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Installments",
+  "icon": "fas fa-calendar-alt",
+  "modified": "2019-09-08 16:29:08.080525",
+  "name": "Installments",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Delivery",
+  "icon": "fas fa-hourglass-half",
+  "modified": "2019-09-08 16:29:28.838663",
+  "name": "Delivery",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Finished",
+  "icon": "fas fa-paint-roller",
+  "modified": "2019-09-08 16:29:49.825766",
+  "name": "Finished",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Property Features",
+  "feature_name": "Unit Type",
+  "icon": null,
+  "modified": "2019-09-08 16:30:09.334742",
+  "name": "Unit Type",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ }
+]

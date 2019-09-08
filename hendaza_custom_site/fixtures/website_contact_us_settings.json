@@ -1,0 +1,32 @@
+[
+ {
+  "address_line1": "8 El Obour Bldgs., Salah Salem st.",
+  "address_line2": null,
+  "address_title": "Address",
+  "city": "Heliopolis",
+  "country": "Egypt",
+  "docstatus": 0,
+  "doctype": "Website Contact Us Settings",
+  "email_id": "Info@hendazaegypt.com",
+  "fax": "02 24039218",
+  "form_description": null,
+  "form_title": "Send us a Message",
+  "forward_to_email": "mostafa.fekry@gmail.com",
+  "google_maps": "<iframe allowfullscreen=\"\" frameborder=\"0\" height=\"450\" src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13810.152797901374!2d31.313087!3d30.078769000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x825f39c064cef4cc!2z2YfZhtiv2KfYstinINin2YTYudmC2KfYsdmK2KkgSGVuZGF6YSByZWFsZXN0YXRl!5e0!3m2!1sen!2seg!4v1553119070270\" style=\"border: 0;\" width=\"100%\"></iframe>",
+  "heading": "Contact Us",
+  "introduction": null,
+  "light_description": "Get in touch with us",
+  "mobile": "01000470051/6",
+  "modified": "2019-09-07 12:24:30.163482",
+  "name": "Website Contact Us Settings",
+  "page_header_background": "Projects Header Background",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "phone": "02 24039216",
+  "pincode": "11111",
+  "query_options": "General",
+  "skype": null,
+  "state": "Cairo"
+ }
+]

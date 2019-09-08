@@ -1,0 +1,19 @@
+[
+ {
+  "allow_subscribe": 1,
+  "content": "Our website is almost ready to launch.",
+  "description": "We Are Getting Ready to Launch!",
+  "docstatus": 0,
+  "doctype": "Coming Soon Settings",
+  "image": "/files/blog-48_-_Copy.jpg",
+  "modified": "2019-09-07 12:56:48.538775",
+  "name": "Coming Soon Settings",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "subscribe_description": "Enter your email address to subscribe to get notified.",
+  "subscribe_header": "Be the first to know!",
+  "subscribe_title": "Subscribe And",
+  "title": "Coming Soon"
+ }
+]
