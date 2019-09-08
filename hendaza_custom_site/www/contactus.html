@@ -1,0 +1,169 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ heading or "Contact Us"}} {{ introduction or "" }}{% endblock %}
+{% block topfooter %}
+<section class="section section-no-border bg-color-light m-0 pb-0">
+				<div class="container">
+					<div class="row text-center text-lg-left">
+						<div class="col-md-6 col-lg-3 custom-min-height-1 custom-center-xs">
+							<img src="/assets/hendaza_custom_site/img/icons/custom-icon-6.png" alt class="mb-3" />
+							<h4 class="font-weight-semibold mb-3">{{ _(address_title or "Address") }}</h4>
+							<p class="custom-text-color-1">
+								{{ _(address_line1 or "") }}{% if city %}, {{ _(city) }}{% endif %}{% if state %}, {{ _(state) }}{% endif %}{% if pincode %}, {{ _(pincode) }}{% endif %}{% if country %}, {{ _(country) }}{% endif %}
+							</p>
+						</div>
+						<div class="col-md-6 col-lg-3 custom-min-height-1 custom-center-xs">
+							<img src="/assets/hendaza_custom_site/img/icons/custom-icon-7.png" alt class="mb-3" />
+							<h4 class="font-weight-semibold mb-3">{{ _("Phone") }}</h4>
+							<ul class="custom-list-style-3">
+								{% if phone %}
+								<li>
+									<span class="title text-color-dark">{{ _("Office") }} <span class="custom-text-color-1 float-right">:</span></span>
+									<span class="value">
+										<a href="tel:{{ phone }}" class="custom-text-color-1">{{ phone }}</a>
+									</span>
+								</li>
+								{% endif %}
+								{% if fax %}
+								<li>
+									<span class="title text-color-dark">{{ _("Fax") }} <span class="custom-text-color-1 float-right">:</span></span>
+									<span class="value">
+										<a href="tel:{{ fax }}" class="custom-text-color-1">{{ fax }}</a>
+									</span>
+								</li>
+								{% endif %}
+								{% if mobile %}
+								<li>
+									<span class="title text-color-dark">{{ _("Mobile") }} <span class="custom-text-color-1 float-right">:</span></span>
+									<span class="value">
+										<a href="tel:{{ mobile }}" class="custom-text-color-1">{{ mobile }}</a>
+									</span>
+								</li>
+								{% endif %}
+							</ul>
+						</div>
+						{% if email_id %}
+						<div class="col-md-6 col-lg-3 custom-min-height-1 custom-center-xs">
+							<img src="/assets/hendaza_custom_site/img/icons/custom-icon-8.png" alt class="mb-3" />
+							<h4 class="font-weight-semibold mb-3">{{ _("Email") }}</h4>
+							<ul class="custom-list">
+								<li>
+									<a href="mail:{{ email_id }}" class="custom-text-color-1" itemprop="email">{{ email_id }}</a>
+								</li>
+							</ul>
+						</div>
+						{% endif %}
+						<div class="col-md-6 col-lg-3 custom-min-height-1 custom-center-xs">
+							<img src="/assets/hendaza_custom_site/img/icons/custom-icon-9.png" alt class="mb-3" />
+							<h4 class="font-weight-semibold mb-3">{{ _("Social media") }}</h4>
+							<ul class="custom-list">
+							{% if facebook_link %}
+								<li>
+									<i class="fab fa-facebook-square custom-text-color-1 mr-2"></i>
+									<a href="{{ facebook_link|abs_url }}" class="custom-text-color-1" title="Facebook">Facebook</a>
+								</li>
+							{% endif %}
+							{% if twitter_link %}
+								<li>
+									<i class="fab fa-twitter-square custom-text-color-1 mr-2"></i>
+									<a href="{{ twitter_link|abs_url }}" class="custom-text-color-1" title="Twitter">Twitter</a>
+								</li>
+							{% endif %}
+							{% if linked_in_link %}
+								<li>
+									<i class="fab fa-linkedin custom-text-color-1 mr-2"></i>
+									<a href="{{ linked_in_link|abs_url }}" class="custom-text-color-1" title="Linkedin">Linkedin</a>
+								</li>
+							{% endif %}
+							{% if instagram_link %}
+								<li>
+									<i class="fab fa-instagram custom-text-color-1 mr-2"></i>
+									<a href="{{ instagram_link|abs_url }}" class="custom-text-color-1" title="Instagram">Instagram</a>
+								</li>
+							{% endif %}
+							{% if google_link %}
+								<li>
+									<i class="fab fa-google custom-text-color-1 mr-2"></i>
+									<a href="{{ google_link|abs_url }}" class="custom-text-color-1" title="Google Plus">Google Plus</a>
+								</li>
+							{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="section section-no-border section-quaternary custom-section-spacement-1 m-0">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-8 text-center">
+							<h2 class="text-uppercase font-weight-bold text-color-light d-block">{{ _(form_title)}}</h2>
+							{% if form_description %}<p class="text-4 text-color-light mb-5">{{ _(form_description)}}</p>{% endif %}
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-lg-8">
+							<form id="contactForm" class="contact-form custom-form-style contact-page" method="POST">
+								<div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">
+									{{ _("<strong>Success!</strong> Your message has been sent to us.") }}
+								</div>
+
+								<div class="contact-form-error alert alert-danger d-none mt-4" id="contact-alert">
+									{{ _("<strong>Error!</strong> There was an error sending your message.") }}
+									<span class="mail-error-message text-1 mt-2 d-block" id="mailErrorMessage"></span>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-lg-6">
+										<div class="form-control-custom">
+											<i class="icon-user icons text-color-light"></i>
+											<input type="text" value=""  placeholder="{{ _('Name') }} *" value="" data-msg-required="{{ _('Please enter your name.') }}" maxlength="100" class="form-control" name="name" id="name" required>
+										</div>
+									</div>
+									<div class="form-group col-lg-6">
+										<div class="form-control-custom">
+											<i class="icon-envelope icons text-color-light"></i>
+											<input type="email"  placeholder="{{ _('Email') }} *" value="" data-msg-required="{{ _('Please enter your email address.') }}" data-msg-email="{{ _('Please enter a valid email address.') }}" maxlength="100" class="form-control" name="email" id="email" required>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-lg-12">
+										<div class="form-control-custom custom-select-style mb-0">
+											<i class="icon-target icons text-color-light"></i>
+											<select id="subject" name="subject" data-msg-required="Please select subject" class="form-control" placeholder="{{ _('Subject') }} *" required>
+											{% if query_options -%}
+												{% for option in query_options.split("\n") -%}
+												<option value="{{ option }}">{{ _(option) }}</option>
+												{%- endfor %}
+											{% else %}
+												<option value="General">{{ _("General") }}</option>
+											{% endif %}
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col">
+										<div class="form-control-custom">
+											<i class="icon-bubble icons text-color-light"></i>											
+											<textarea maxlength="5000" data-msg-required="{{ _('Please enter your message.') }}" rows="5" class="form-control" name="message" id="message" placeholder="{{ _('Message') }} *" required></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="form-row text-center">
+									<div class="form-group col">
+									<input type="submit" value="{{ _('Submit Now') }}" class="btn btn-outline custom-btn-style-4 text-uppercase btn-send" data-loading-text="Loading...">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+<script>
+	{% include "templates/includes/contactupdate.js" %}
+</script>
+			<!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
+				{% if google_maps %}<div id="googlemaps" class="custom-google-map p-0 mb-0 pb-0 ">{{ google_maps }}</div>{% endif %}
+{% endblock %}

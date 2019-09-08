@@ -1,0 +1,13 @@
+<li class="dropdown" >
+	<a class="dropdown-item dropdown-toggle" href="#">{{ _("Language") }}</a>
+	<ul class="dropdown-menu">
+		<li class="back-button d-none d-lg-block">
+			<a class="dropdown-item">{{ _("Language") }}</a>
+		</li>
+		{%- for page in website_languages_items -%}
+		<li data-label="{{ page.language_name }}">
+			<a class="dropdown-item" href="/{{ page.language }}/{{ path }}">{{ page.language_name }}</a>
+		</li>
+		{%- endfor -%}
+	</ul>
+</li>

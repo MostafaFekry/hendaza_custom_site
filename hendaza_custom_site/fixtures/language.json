@@ -1,0 +1,28 @@
+[
+ {
+  "based_on": null,
+  "docstatus": 0,
+  "doctype": "Language",
+  "flag": "eg",
+  "language_code": "ar",
+  "language_name": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+  "modified": "2019-09-07 11:05:34.483034",
+  "name": "ar",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ },
+ {
+  "based_on": null,
+  "docstatus": 0,
+  "doctype": "Language",
+  "flag": "us",
+  "language_code": "en",
+  "language_name": "English",
+  "modified": "2019-09-07 10:56:16.079394",
+  "name": "en",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null
+ }
+]

@@ -1,0 +1,52 @@
+{
+ "autoname": "hash",
+ "creation": "2019-09-07 03:20:36.320083",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "partners_name",
+  "partners_image",
+  "route",
+  "target"
+ ],
+ "fields": [
+  {
+   "fieldname": "partners_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Partners Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "partners_image",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Partners Image",
+   "reqd": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Route"
+  },
+  {
+   "fieldname": "target",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Target"
+  }
+ ],
+ "istable": 1,
+ "modified": "2019-09-07 03:20:36.320083",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Website Partners Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

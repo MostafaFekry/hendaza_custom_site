@@ -1,0 +1,122 @@
+{
+ "creation": "2019-09-06 23:48:02.658675",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "language_option_section_break",
+  "enable_multilanguage_support",
+  "col_break_01",
+  "display_language_picker_in_top_bar",
+  "website_languages_section_break_02",
+  "website_languages",
+  "sb_1",
+  "page_header_background",
+  "newsletter_social_links",
+  "facebook_link",
+  "linked_in_link",
+  "twitter_link",
+  "col_break_02",
+  "instagram_link",
+  "google_link"
+ ],
+ "fields": [
+  {
+   "fieldname": "language_option_section_break",
+   "fieldtype": "Section Break",
+   "label": "Language Option"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_multilanguage_support",
+   "fieldtype": "Check",
+   "label": "Enable Multilanguage Support"
+  },
+  {
+   "fieldname": "col_break_01",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "display_language_picker_in_top_bar",
+   "fieldtype": "Check",
+   "label": "Display Language Picker in Top Bar"
+  },
+  {
+   "fieldname": "website_languages_section_break_02",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "website_languages",
+   "fieldtype": "Table",
+   "label": "Website Languages",
+   "options": "Website Languages"
+  },
+  {
+   "fieldname": "newsletter_social_links",
+   "fieldtype": "Section Break",
+   "label": "Social Links"
+  },
+  {
+   "fieldname": "facebook_link",
+   "fieldtype": "Data",
+   "label": "Facebook Link"
+  },
+  {
+   "fieldname": "linked_in_link",
+   "fieldtype": "Data",
+   "label": "Linked In Link"
+  },
+  {
+   "fieldname": "twitter_link",
+   "fieldtype": "Data",
+   "label": "Twitter Link"
+  },
+  {
+   "fieldname": "col_break_02",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "instagram_link",
+   "fieldtype": "Data",
+   "label": "Instagram Link"
+  },
+  {
+   "fieldname": "google_link",
+   "fieldtype": "Data",
+   "label": "Google Link"
+  },
+  {
+   "fieldname": "sb_1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "page_header_background",
+   "fieldtype": "Link",
+   "label": "Page Header Background",
+   "options": "Website Header Background"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2019-09-07 10:32:08.807399",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Hendaza Website Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

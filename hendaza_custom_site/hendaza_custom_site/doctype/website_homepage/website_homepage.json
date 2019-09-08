@@ -1,0 +1,265 @@
+{
+ "creation": "2019-09-07 02:34:49.238501",
+ "description": "Custom Home Page",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "help",
+  "company",
+  "title",
+  "slideshow",
+  "sb1",
+  "main_section",
+  "sb2",
+  "display_services_section",
+  "services_section_title",
+  "services_section_description",
+  "website_services_item",
+  "count_services_item_in_row",
+  "sb3",
+  "display_projects_section",
+  "projects_section_title",
+  "homepage_items_group",
+  "sb4",
+  "display_why_us_section",
+  "why_us_section_title",
+  "why_us_section_description",
+  "why_us_items",
+  "count_why_us_items_in_row",
+  "sb5",
+  "display_products_section",
+  "products_section_title",
+  "homepage_products_items",
+  "sb6",
+  "display_partners_section",
+  "partners_section_title",
+  "website_partners_items",
+  "count_partners_item_display"
+ ],
+ "fields": [
+  {
+   "fieldname": "help",
+   "fieldtype": "HTML",
+   "label": "Help",
+   "options": "<div class=\"alert\">Link for Home Page is \"/index\"</div>"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "remember_last_selected_value": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "slideshow",
+   "fieldtype": "Link",
+   "label": "Slideshow",
+   "options": "Website Slideshow"
+  },
+  {
+   "fieldname": "sb1",
+   "fieldtype": "Section Break",
+   "label": "Content"
+  },
+  {
+   "fieldname": "main_section",
+   "fieldtype": "Text Editor",
+   "label": "Main Section"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "display_services_section",
+   "fieldname": "sb2",
+   "fieldtype": "Section Break",
+   "label": "Services Section"
+  },
+  {
+   "default": "0",
+   "fieldname": "display_services_section",
+   "fieldtype": "Check",
+   "label": "Display Services section"
+  },
+  {
+   "fieldname": "services_section_title",
+   "fieldtype": "Data",
+   "label": "Services Section Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "services_section_description",
+   "fieldtype": "Small Text",
+   "label": "Services Section Description",
+   "translatable": 1
+  },
+  {
+   "fieldname": "website_services_item",
+   "fieldtype": "Table",
+   "label": "Website Services Item",
+   "options": "Website Services Item"
+  },
+  {
+   "default": "3",
+   "fieldname": "count_services_item_in_row",
+   "fieldtype": "Int",
+   "label": "Count Services Item in Row",
+   "reqd": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "display_projects_section",
+   "fieldname": "sb3",
+   "fieldtype": "Section Break",
+   "label": "Projects Section"
+  },
+  {
+   "default": "0",
+   "fieldname": "display_projects_section",
+   "fieldtype": "Check",
+   "label": "Display Projects Section"
+  },
+  {
+   "fieldname": "projects_section_title",
+   "fieldtype": "Small Text",
+   "label": "Projects Section Title"
+  },
+  {
+   "fieldname": "homepage_items_group",
+   "fieldtype": "Table",
+   "label": "Homepage Items Group",
+   "options": "Homepage Items Group"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "display_why_us_section",
+   "fieldname": "sb4",
+   "fieldtype": "Section Break",
+   "label": "Why Us Section"
+  },
+  {
+   "default": "0",
+   "fieldname": "display_why_us_section",
+   "fieldtype": "Check",
+   "label": "Display Why Us Section"
+  },
+  {
+   "fieldname": "why_us_section_title",
+   "fieldtype": "Data",
+   "label": "Why Us Section Title"
+  },
+  {
+   "fieldname": "why_us_section_description",
+   "fieldtype": "Small Text",
+   "label": "Why Us Section Description"
+  },
+  {
+   "fieldname": "why_us_items",
+   "fieldtype": "Table",
+   "label": "Why Us Items",
+   "options": "Website Services Item"
+  },
+  {
+   "default": "3",
+   "fieldname": "count_why_us_items_in_row",
+   "fieldtype": "Int",
+   "label": "Count Why Us Items in Row",
+   "reqd": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "display_products_section",
+   "fieldname": "sb5",
+   "fieldtype": "Section Break",
+   "label": "Products Section"
+  },
+  {
+   "default": "0",
+   "fieldname": "display_products_section",
+   "fieldtype": "Check",
+   "label": "Display Products Section"
+  },
+  {
+   "fieldname": "products_section_title",
+   "fieldtype": "Small Text",
+   "label": "Products Section Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "homepage_products_items",
+   "fieldtype": "Table",
+   "label": "Homepage Products Items",
+   "options": "Homepage Products Items"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "display_partners_section",
+   "fieldname": "sb6",
+   "fieldtype": "Section Break",
+   "label": "Partners Section"
+  },
+  {
+   "default": "0",
+   "fieldname": "display_partners_section",
+   "fieldtype": "Check",
+   "label": "Display Partners Section"
+  },
+  {
+   "fieldname": "partners_section_title",
+   "fieldtype": "Data",
+   "label": "Partners Section Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "website_partners_items",
+   "fieldtype": "Table",
+   "label": "Website Partners Items",
+   "options": "Website Partners Items"
+  },
+  {
+   "default": "4",
+   "fieldname": "count_partners_item_display",
+   "fieldtype": "Int",
+   "label": "Count Partners Item Display",
+   "reqd": 1
+  }
+ ],
+ "issingle": 1,
+ "modified": "2019-09-07 11:46:42.740003",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Website Homepage",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

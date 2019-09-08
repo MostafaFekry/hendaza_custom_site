@@ -1,0 +1,165 @@
+{
+ "autoname": "field:language",
+ "creation": "2019-09-07 00:06:17.540158",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_01",
+  "language",
+  "language_name",
+  "language_flag",
+  "banner_section",
+  "banner_lang_html",
+  "column_break_8",
+  "slogan",
+  "footer_section",
+  "newsletter_title",
+  "newsletter_description",
+  "newsletter_success_message",
+  "newsletter_field",
+  "newsletter_button",
+  "social_tab_title",
+  "column_break_16",
+  "contact_us_tab_title",
+  "contact_us_address",
+  "contact_us_hotline",
+  "contact_us_phone",
+  "contact_us_email",
+  "footer_logo_code",
+  "copyright"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_01",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "language",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Site Language",
+   "options": "Language",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "language.language_name",
+   "fieldname": "language_name",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Language Name"
+  },
+  {
+   "fetch_from": "language.flag",
+   "fieldname": "language_flag",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Language Flag"
+  },
+  {
+   "fieldname": "banner_section",
+   "fieldtype": "Section Break",
+   "label": "Banner"
+  },
+  {
+   "fieldname": "banner_lang_html",
+   "fieldtype": "Code",
+   "label": "Banner Lang HTML"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "slogan",
+   "fieldtype": "Code",
+   "label": "Slogan"
+  },
+  {
+   "fieldname": "footer_section",
+   "fieldtype": "Section Break",
+   "label": "Footer"
+  },
+  {
+   "fieldname": "newsletter_title",
+   "fieldtype": "Data",
+   "label": "Newsletter Title"
+  },
+  {
+   "fieldname": "newsletter_description",
+   "fieldtype": "Small Text",
+   "label": "Newsletter Description"
+  },
+  {
+   "fieldname": "newsletter_success_message",
+   "fieldtype": "Data",
+   "label": "Newsletter Success Message"
+  },
+  {
+   "fieldname": "newsletter_field",
+   "fieldtype": "Data",
+   "label": "Newsletter Field"
+  },
+  {
+   "fieldname": "newsletter_button",
+   "fieldtype": "Data",
+   "label": "Newsletter Button"
+  },
+  {
+   "fieldname": "social_tab_title",
+   "fieldtype": "Data",
+   "label": "Social Tab Title"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_us_tab_title",
+   "fieldtype": "Data",
+   "label": "Contact Us Tab Title"
+  },
+  {
+   "fieldname": "contact_us_address",
+   "fieldtype": "Data",
+   "label": "Contact Us Address"
+  },
+  {
+   "fieldname": "contact_us_hotline",
+   "fieldtype": "Data",
+   "label": "Contact Us Hotline"
+  },
+  {
+   "fieldname": "contact_us_phone",
+   "fieldtype": "Data",
+   "label": "Contact Us Phone"
+  },
+  {
+   "fieldname": "contact_us_email",
+   "fieldtype": "Data",
+   "label": "Contact Us Email"
+  },
+  {
+   "fieldname": "footer_logo_code",
+   "fieldtype": "Code",
+   "label": "Footer Logo Code"
+  },
+  {
+   "fieldname": "copyright",
+   "fieldtype": "Data",
+   "label": "Copyright"
+  }
+ ],
+ "istable": 1,
+ "modified": "2019-09-07 10:27:03.000374",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Website Languages",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

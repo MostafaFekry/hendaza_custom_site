@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- Built on Frappe. https://frappe.io/ -->
+<html lang='{{ website_languages_request or "en" }}'{% if website_languages_request == "ar"%} dir="rtl"{%- endif %}  class="side-header-hamburguer-sidebar side-header-hamburguer-sidebar-right side-header-hamburguer-sidebar-push side-header-hide side-header-right-no-reverse">
+<head>
+	<meta charset="utf-8">
+	<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+	{% block meta_block %}
+		{% include "templates/includes/meta_block.html" %}
+	{% endblock %}
+	<title>{% block title %} {{ title | striptags }} {% endblock %}</title>
+	<meta name="generator" content="frappe">
+	<meta name="theme-color" content="#0f436f">
+	<link rel="canonical" href="https://hendazaegypt.com/"
+    {% block favicon %}
+	<link rel="shortcut icon" href='{{ (favicon or "/assets/frappe/images/favicon.png") | abs_url }}' type="image/x-icon">
+	<link rel="icon" href='{{ (favicon or "/assets/frappe/images/favicon.png") | abs_url }}' type="image/x-icon">
+    {% endblock %}
+	{%- block head -%}
+		{%- block head_include %}{{ head_include or "" }}{% endblock -%}
+	{%- endblock -%}
+	
+	<!-- Web Fonts  -->
+	{% if website_languages_request == "ar"%}
+	<link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700,900|Josefin+Sans:400,400i,600,700&amp;subset=arabic" rel="stylesheet">
+	{%- else -%}
+	<link href="https://fonts.googleapis.com/css?family=Cairo:300,400,600,700,900|Josefin+Sans:400,400i,600,700&amp;subset=arabic" rel="stylesheet">
+	{%- endif %}
+	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Cairo:400,600&subset=arabic" rel="stylesheet">
+	Vendor CSS -->
+	<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/fontawesome-free/css/all.min.css">
+	<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/animate/animate.min.css">
+	<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/simple-line-icons/css/simple-line-icons.min.css">
+	<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/owl.carousel/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/owl.carousel/assets/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/magnific-popup/magnific-popup.min.css">
+		
+	<!-- Theme CSS -->
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/css/{% if website_languages_request == "ar" -%}rtl-{%- endif %}theme.css">
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/css/{% if website_languages_request == "ar" -%}rtl-{%- endif %}theme-elements.css">
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/css/{% if website_languages_request == "ar" -%}rtl-{%- endif %}theme-blog.css">
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/css/{% if website_languages_request == "ar" -%}rtl-{%- endif %}theme-shop.css">
+
+	<!-- Current Page CSS -->
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/rs-plugin/css/settings.css">
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/rs-plugin/css/layers.css">
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/vendor/rs-plugin/css/navigation.css">
+
+	<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="/assets/hendaza_custom_site/css/custom.css">
+
+	<!-- Head Libs -->
+		<script src="/assets/hendaza_custom_site/vendor/modernizr/modernizr.min.js"></script>
+	{%- block style %}{%- endblock -%}
+    <script>
+		window.frappe = {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) {
+			frappe.ready_events.push(fn);
+		}
+		window.dev_server = {{ dev_server }};
+		window.socketio_port = {{ frappe.socketio_port }};
+    </script>
+</head>
+{% block body %}
+<body data-path="{{ path }}" frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {% endif -%}>
+		<div class="body">
+			{%- block navbar -%}
+				{% include "templates/includes/navbar/navbar.html" %}
+			{%- endblock -%}
+
+			<div role="main" class="main">
+				<div class="hero-and-content">
+					<div data-html-block="hero">
+					{%- block hero -%}{%- endblock -%}
+					</div>
+				</div>
+				{% block content %}{% endblock %}
+			</div>
+			{% block topfooter %}{% endblock %}
+			{%- block footer -%}{% include "templates/includes/footer/footer.html" %}{%- endblock -%}
+		</div>
+
+	{% block base_scripts %}
+		<!-- Vendor -->
+		<script src="/assets/hendaza_custom_site/vendor/jquery/jquery.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/jquery.appear/jquery.appear.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/popper/umd/popper.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/common/common.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/jquery.validation/jquery.validate.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/isotope/jquery.isotope.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/vide/jquery.vide.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/vivus/vivus.min.js"></script>
+		
+		<!-- Theme Base, Components and Settings -->
+		<script src="/assets/hendaza_custom_site/js/theme.js"></script>
+		
+		<!-- Current Page Vendor and Views -->
+		<script src="/assets/hendaza_custom_site/vendor/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+		<script src="/assets/hendaza_custom_site/vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		
+		<!-- Theme Custom -->
+		<script src="/assets/hendaza_custom_site/js/custom.js"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="/assets/hendaza_custom_site/js/theme.init.js"></script>
+
+	
+	
+	<!-- js should be loaded in body! -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+	<script type="text/javascript" src="/assets/hendaza_custom_site/js/frappe-web.min.js"></script>
+	{% endblock %}
+    {%- if js_globals is defined %}
+    <script>
+    {%- for key, value in js_globals.iteritems() %}
+    window.{{ key }} = "{{ value[0] }}";
+    {%- endfor -%}
+    </script>
+    {% endif -%}
+	{%- for link in web_include_js %}
+	<script type="text/javascript" src="{{ link|abs_url }}"></script>
+	{%- endfor -%}
+    {%- block script %}{%- endblock %}
+	<!-- csrf_token -->
+    {%- block body_include %}{{ body_include or "" }}{% endblock -%}
+</body>
+{% endblock %}
+</html>

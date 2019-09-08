@@ -1,0 +1,113 @@
+{
+ "creation": "2019-09-07 01:37:19.020809",
+ "description": "Settings for the Coming Soon Page",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "help",
+  "title",
+  "description",
+  "content",
+  "column_break_5",
+  "image",
+  "sb1",
+  "allow_subscribe",
+  "subscribe_title",
+  "subscribe_header",
+  "subscribe_description"
+ ],
+ "fields": [
+  {
+   "fieldname": "help",
+   "fieldtype": "HTML",
+   "label": "Help",
+   "options": "<div class=\"alert\">Link for Coming Soon Page is \"/comingsoon\"</div>"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Title",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "content",
+   "fieldtype": "Small Text",
+   "label": "Content"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "sb1",
+   "fieldtype": "Section Break",
+   "label": "Subscribe Section"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_subscribe",
+   "fieldtype": "Check",
+   "label": "Allow Subscribe"
+  },
+  {
+   "fieldname": "subscribe_title",
+   "fieldtype": "Data",
+   "label": "Subscribe Title"
+  },
+  {
+   "fieldname": "subscribe_header",
+   "fieldtype": "Data",
+   "label": "Subscribe Header"
+  },
+  {
+   "fieldname": "subscribe_description",
+   "fieldtype": "Small Text",
+   "label": "Subscribe Description"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2019-09-07 13:32:26.916680",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Coming Soon Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

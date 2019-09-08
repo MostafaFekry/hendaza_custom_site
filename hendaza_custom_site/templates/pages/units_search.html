@@ -1,0 +1,276 @@
+{% extends "templates/web.html" %}
+
+
+{% block unitssearch %}
+<aside class="custom-units-search nav-secondary" id="navSecondary" data-plugin-sticky data-plugin-options='{"minWidth": 991, "padding": {"top": 100}}'>
+	<div class="container">
+		<div class="row mt-4">
+			<div class="col">
+				<form id="propertiesForm" action="/units_search" method="POST">
+					<div class="form-row">
+						{% if search_territory_item %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="location" id="location">
+									<option value="">{{ _("Location") }}</option>
+									{% for t in search_territory_item %}
+									<option value="{{ t.name }}" {% if t.name == propertiesLocation%}selected{% endif %}>{{ _(t.territory_name) }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endif %}
+						{% if search_unit_usage_item %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="usage" id="usage">
+									<option value="">{{ _("Unit Usage") }}</option>
+									{% for UU in search_unit_usage_item %}
+									<option value="{{ UU.unit_usage }}" {% if UU.unit_usage == propertiesunit_usage%}selected{% endif %}>{{ _(UU.unit_usage) }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endif %}
+						{% if search_unit_for_item %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="propertiesunit_for" id="propertiesunit_for">
+									<option value="">{{ _("Unit For") }}</option>
+									{% for UF in search_unit_for_item %}
+									<option value="{{ UF.name }}">{{ _(UF.attribute_value) }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endif %}
+						{% if search_unit_type_item %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="propertiesPropertyType" id="propertiesPropertyType">
+									<option value="">{{ _("Property Type") }}</option>
+									{% for UT in search_unit_type_item %}
+									<option value="{{ UT.name }}">{{ _(UT.attribute_value) }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endif %}
+						{% if search_unit_finishing_item %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="propertiesPropertyFinishing" id="propertiesPropertyFinishing">
+									<option value="">{{ _("Finishing") }}</option>
+									{% for UF in search_unit_finishing_item %}
+									<option value="{{ UF.name }}">{{ _(UF.attribute_value) }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endif %}
+						{% if search_unit_projects_item %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="propertiesPropertyProjects" id="propertiesPropertyProjects">
+									<option value="">{{ _("Projects") }}</option>
+									{% for P in search_unit_projects_item %}
+									<option value="{{ P.item_group_name }}">{{ _(P.item_group_name) }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+					<div class="form-row">
+						{% if search_room_number %}
+						{% for rn in search_room_number %}
+						
+						{% set roomnumber = rn.from_range | int %}
+						{% set to_range = rn.to_range|int +1 %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="propertiesMinrooms" id="propertiesMinrooms">
+									<option value="">Min Rooms</option>
+									{% for i in range(roomnumber,to_range) %}
+									<option value="{{ i }}">{{ i }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+						{% endif %}
+						{% if search_unit_area %}
+						{% for ua in search_unit_area %}
+						
+						{% set from_range = ua.from_range | int %}
+						{% set to_range = ua.to_range|int +1 %}
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase text-2" name="propertiesMinArea" id="propertiesMinArea">
+									<option value="">Min Area</option>
+									{% for i in range(from_range,to_range) %}
+									<option value="{{ i }}">{{ i }}</option>
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+						{% endif %}
+						<!--<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase" name="propertiesMinPrice" data-msg-required="This field is required."
+									id="propertiesMinPrice2" required="">
+									<option value="">Min Price</option>
+									<option value="150000">$150,000</option>
+									<option value="200000">$200,000</option>
+									<option value="250000">$250,000</option>
+									<option value="300000">$300,000</option>
+									<option value="350000">$350,000</option>
+									<option value="400000">$400,000</option>
+									<option value="450000">$450,000</option>
+									<option value="500000">$500,000</option>
+									<option value="550000">$550,000</option>
+									<option value="600000">$600,000</option>
+									<option value="650000">$650,000</option>
+									<option value="700000">$700,000</option>
+									<option value="750000">$750,000</option>
+									<option value="800000">$800,000</option>
+									<option value="850000">$850,000</option>
+									<option value="900000">$900,000</option>
+									<option value="950000">$950,000</option>
+									<option value="1000000">$1,000,000</option>
+									<option value="1250000">$1,250,000</option>
+									<option value="1500000">$1,500,000</option>
+									<option value="1750000">$1,750,000</option>
+									<option value="2000000">$2,000,000</option>
+									<option value="2250000">$2,250,000</option>
+									<option value="2500000">$2,500,000</option>
+									<option value="2750000">$2,750,000</option>
+									<option value="3000000">$3,000,000</option>
+									<option value="3250000">$3,250,000</option>
+									<option value="3500000">$3,500,000</option>
+									<option value="3750000">$3,750,000</option>
+									<option value="4000000">$4,000,000</option>
+									<option value="4250000">$4,250,000</option>
+									<option value="4500000">$4,500,000</option>
+									<option value="4750000">$4,750,000</option>
+									<option value="5000000">$5,000,000</option>
+									<option value="6000000">$6,000,000</option>
+									<option value="7000000">$7,000,000</option>
+									<option value="8000000">$8,000,000</option>
+									<option value="9000000">$9,000,000</option>
+									<option value="10000000">$10,000,000</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group col-lg-2 mb-0">
+							<div class="form-control-custom mb-3">
+								<select class="form-control text-uppercase" name="propertiesMaxPrice" data-msg-required="This field is required."
+									id="propertiesMaxPrice2" required="">
+									<option value="">Max Price</option>
+									<option value="150000">$150,000</option>
+									<option value="200000">$200,000</option>
+									<option value="250000">$250,000</option>
+									<option value="300000">$300,000</option>
+									<option value="350000">$350,000</option>
+									<option value="400000">$400,000</option>
+									<option value="450000">$450,000</option>
+									<option value="500000">$500,000</option>
+									<option value="550000">$550,000</option>
+									<option value="600000">$600,000</option>
+									<option value="650000">$650,000</option>
+									<option value="700000">$700,000</option>
+									<option value="750000">$750,000</option>
+									<option value="800000">$800,000</option>
+									<option value="850000">$850,000</option>
+									<option value="900000">$900,000</option>
+									<option value="950000">$950,000</option>
+									<option value="1000000">$1,000,000</option>
+									<option value="1250000">$1,250,000</option>
+									<option value="1500000">$1,500,000</option>
+									<option value="1750000">$1,750,000</option>
+									<option value="2000000">$2,000,000</option>
+									<option value="2250000">$2,250,000</option>
+									<option value="2500000">$2,500,000</option>
+									<option value="2750000">$2,750,000</option>
+									<option value="3000000">$3,000,000</option>
+									<option value="3250000">$3,250,000</option>
+									<option value="3500000">$3,500,000</option>
+									<option value="3750000">$3,750,000</option>
+									<option value="4000000">$4,000,000</option>
+									<option value="4250000">$4,250,000</option>
+									<option value="4500000">$4,500,000</option>
+									<option value="4750000">$4,750,000</option>
+									<option value="5000000">$5,000,000</option>
+									<option value="6000000">$6,000,000</option>
+									<option value="7000000">$7,000,000</option>
+									<option value="8000000">$8,000,000</option>
+									<option value="9000000">$9,000,000</option>
+									<option value="10000000">$10,000,000</option>
+								</select>
+							</div>
+						</div>-->
+						<div class="form-group col-lg-2 mb-0">
+							<input type="submit" value="Search Now" class="btn btn-secondary btn-lg btn-block text-uppercase text-2">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</aside>
+{% endblock %}
+{% block page_content %}
+<div id="combinationFilters" class="filters d-none">
+
+	<div class="row">
+		<div class="col-lg-6">
+			<h5 class="text-uppercase mb-3">Filter By Type:</h5>
+			<ul class="nav nav-pills sort-source sort-source-style-3 portfolio-filter-group" data-filter-group="group2">
+				<li data-option-value="" class="nav-item active"><a class="nav-link text-1 text-uppercase active" href="#">Show All</a></li>
+			</ul>
+		</div>
+		<div class="col-lg-6">
+			<h5 class="text-uppercase mb-3">Filter By Location:</h5>
+			<ul class="nav nav-pills sort-source sort-source-style-3 portfolio-filter-group" data-filter-group="group1">
+				<li data-option-value="" class="nav-item active"><a class="nav-link text-1 text-uppercase active" href="#">Show All</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+<div class="sort-destination-loader sort-destination-loader-showing  isotope-item itemtype="http://schema.org/Product">				
+	<div class="row portfolio-list" id="search-list">
+		{% if items %}
+			{% for item in items %}
+			{% if  item.has_variants == 0 %}
+				<div class='col-sm-6 col-lg-4  isotope-item'>
+					<div class="portfolio-item">
+						<a href="{% if item.variant_of %}{{ item.variantroute+'?variant='+item.name }}{% else %}{{ item.route|abs_url }}{% endif %}">
+							<span class="thumb-info thumb-info-lighten">
+								<span class="img-thumbnail img-thumbnail thumb-info-wrapper">
+									<img itemprop="image" src='{{ frappe.utils.quoted(item.thumbnail or item.website_image or item.image or "/assets/hendaza_custom_site/img/nounitpic.png") | abs_url }}' class="img-fluid" alt="">
+									<span class="thumb-info-title">
+										<span class="thumb-info-inner" itemprop="name">{{ _(item.item_name) }}</span>
+										{% if item.territory or item.unit_usage %}<span class="thumb-info-type">{{ _(item.territory or "") }}{% if item.territory %} - {% endif %}{{ _(item.unit_usage or "") }}</span>{% endif %}
+									</span>
+									<span class="thumb-info-action">
+										<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+									</span>
+								</span>
+							</span>
+						</a>
+					</div>
+				</div>
+			{% endif %}
+			{% endfor %}
+		
+		{% else %}
+			<div class="text-muted">{{ _("No items listed") }}.</div>
+		{% endif %}			
+	</div>
+</div>
+{% endblock %}
+{%- block script %}<!-- Examples -->
+<script src="/assets/hendaza_custom_site/js/examples/examples.portfolio.js"></script>{%- endblock %}

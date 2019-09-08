@@ -1,0 +1,229 @@
+{
+ "creation": "2019-09-07 04:11:34.160164",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "help",
+  "title",
+  "light_description",
+  "page_header_background",
+  "company_introduction",
+  "section_break_2",
+  "mission_title",
+  "mission_description",
+  "vision_title",
+  "vision_description",
+  "why_us_title",
+  "why_us_description",
+  "section_break_13",
+  "who_we_are_title",
+  "who_we_are_description",
+  "col_break_11",
+  "pic_1",
+  "pic_2",
+  "pic_3",
+  "sb0",
+  "company_history_heading",
+  "history_description",
+  "company_history",
+  "sb1",
+  "team_members_heading",
+  "team_members",
+  "footer"
+ ],
+ "fields": [
+  {
+   "fieldname": "help",
+   "fieldtype": "HTML",
+   "label": "Help",
+   "options": "<div class=\"alert\">Link for About Us Page is \"/aboutus\"</div>"
+  },
+  {
+   "description": "Introduce your company to the website visitor.",
+   "fieldname": "company_introduction",
+   "fieldtype": "Text Editor",
+   "label": "Company Introduction"
+  },
+  {
+   "fieldname": "sb0",
+   "fieldtype": "Section Break",
+   "label": "Org History"
+  },
+  {
+   "description": "\"Company History\"",
+   "fieldname": "company_history_heading",
+   "fieldtype": "Data",
+   "label": "Org History Heading"
+  },
+  {
+   "fieldname": "company_history",
+   "fieldtype": "Table",
+   "label": "Org History",
+   "options": "Company History"
+  },
+  {
+   "fieldname": "sb1",
+   "fieldtype": "Section Break",
+   "label": "Team Members"
+  },
+  {
+   "description": "\"Team Members\" or \"Management\"",
+   "fieldname": "team_members_heading",
+   "fieldtype": "Data",
+   "label": "Team Members Heading"
+  },
+  {
+   "fieldname": "team_members",
+   "fieldtype": "Table",
+   "label": "Team Members",
+   "options": "About Us Team Member"
+  },
+  {
+   "fieldname": "footer",
+   "fieldtype": "Text Editor",
+   "label": "Footer"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "light_description",
+   "fieldtype": "Data",
+   "label": "Light Description",
+   "translatable": 1
+  },
+  {
+   "fieldname": "page_header_background",
+   "fieldtype": "Link",
+   "label": "Page Header Background",
+   "options": "Website Header Background"
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "mission_title",
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Mission & Vision Section"
+  },
+  {
+   "bold": 1,
+   "fieldname": "mission_title",
+   "fieldtype": "Data",
+   "label": "Mission Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "mission_description",
+   "fieldtype": "Small Text",
+   "label": "Mission Description",
+   "translatable": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "vision_title",
+   "fieldtype": "Data",
+   "label": "Vision Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "vision_description",
+   "fieldtype": "Small Text",
+   "label": "Vision Description",
+   "translatable": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "why_us_title",
+   "fieldtype": "Data",
+   "label": "Why Us Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "why_us_description",
+   "fieldtype": "Small Text",
+   "label": "Why Us Description",
+   "translatable": 1
+  },
+  {
+   "collapsible": 1,
+   "collapsible_depends_on": "who_we_are_title",
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break",
+   "label": "Who We Are Section"
+  },
+  {
+   "bold": 1,
+   "fieldname": "who_we_are_title",
+   "fieldtype": "Data",
+   "label": "Who We Are Title",
+   "translatable": 1
+  },
+  {
+   "fieldname": "who_we_are_description",
+   "fieldtype": "Text",
+   "label": "Who We Are Description",
+   "translatable": 1
+  },
+  {
+   "fieldname": "col_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pic_1",
+   "fieldtype": "Attach",
+   "label": "Pic 1"
+  },
+  {
+   "fieldname": "pic_2",
+   "fieldtype": "Attach",
+   "label": "Pic 2"
+  },
+  {
+   "fieldname": "pic_3",
+   "fieldtype": "Attach",
+   "label": "Pic 3"
+  },
+  {
+   "fieldname": "history_description",
+   "fieldtype": "Small Text",
+   "label": "History Description",
+   "translatable": 1
+  }
+ ],
+ "issingle": 1,
+ "modified": "2019-09-07 04:39:05.566191",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Website About Us Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

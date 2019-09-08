@@ -1,0 +1,148 @@
+<div class="body-overlay hamburguer-close"></div>
+<div class="sticky-wrapper sticky-wrapper-transparent sticky-wrapper-transparent-light sticky-wrapper-effect-1 sticky-wrapper-border-bottom" data-plugin-sticky data-plugin-options="{'minWidth': 0, 'stickyStartEffectAt': 100, 'padding': {'top': 0}}">
+	<div class="sticky-body">
+		<div class="container container-xl">
+			<div class="row justify-content-between align-items-center">
+				<div class="col-auto mr-0">
+					<div class="">
+						<a href="{{ url_prefix }}{{ home_page or "/"}}" class=" font-weight-bold text-4 text-decoration-none">
+							{{ brand_html or (frappe.get_hooks("brand_html") or ["Home"])[0] }}{{ slogan or "" }}
+						</a>
+					</div>
+				</div>
+				<!--<div class="col-auto text-left d-flex ml-0">
+					<div class="header-row text-color-secondary">
+						<a href="{{ url_prefix }}{{ home_page or "/"}}" class=" font-weight-bold text-4 text-decoration-none text-color-primary"><strong class="font-weight-extra-bold text-color-secondary">HENDAZA</strong> Investment & Urban Development</a>
+					</div>
+				</div>
+				<div class="col-sm-4 slogan">
+					<span class="text-color-secondary font-weight-bold text-5">Hendaza for Real Estate</span>
+				</div>
+				<div class="col-auto text-right d-flex align-items-center justify-content-end">
+					<div class="col-lg-auto " >
+						<div class="feature-box feature-box-style-2 d-block d-lg-flex mb-4 mb-lg-0 px-xl-2 mx-lg-2">
+							<div class="feature-box-icon  d-none d-md-block">
+								<i class="icon-call-out icons text-color-secondary"></i>
+							</div>
+							<div class="feature-box-info pl-1">
+								<h5 class="font-weight-dark text-color-secondary  mb-0">CALL US NOW</h5>
+								<a href="tel:+20225165850" class="text-color-primary font-weight-semibold text-decoration-none">022-516-5850</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-auto  d-none d-md-block" >
+						<div class="feature-box feature-box-style-2 d-block d-lg-flex mb-4 mb-lg-0 px-xl-2 mx-lg-2">
+							<div class="feature-box-icon">
+								<i class="icon-login icons text-color-secondary"></i>
+							</div>
+							<div class="feature-box-info pl-1">
+								<h5 class="font-weight-dark text-color-secondary  mb-0">Join Us</h5>
+								<a href="/login" class="text-color-primary font-weight-semibold text-decoration-none">Sign in</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-auto  d-none d-md-block" >
+						<div class="feature-box feature-box-style-2 d-block d-lg-flex mb-4 mb-lg-0 px-xl-2 mx-lg-2">
+							<div class="feature-box-icon">
+								<i class="fas fa-globe-africa text-color-secondary"></i>
+							</div>
+							<div class="feature-box-info pl-1">
+								<h5 class="font-weight-dark text-color-secondary  mb-0">Language</h5>
+								<a href="/login" class="text-color-primary font-weight-semibold text-decoration-none">العربية</a>
+							</div>
+						</div>
+					</div>
+					
+					<button class="hamburguer-btn hamburguer-btn-icons  btn-primary btn header-btn-collapse-nav" data-set-active="false">
+						<i class="fas fa-bars"></i>
+					</button>
+				</div>-->
+				<div class="col-auto text-right d-flex align-items-center justify-content-end">
+					<div class="header-row text-color-secondary">
+						<nav class="header-nav-top">
+							<ul class="nav nav-pills">
+								{% if contact_us_hotline %}<li class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-sm-show">
+									<a class="nav-link custom-text-color-topmenu" href='tel:{{ contact_us_hotline or "" }}'><i class="fas fa-phone"></i> {{ contact_us_hotline or "" }}</a>
+								</li>{% endif %}
+								{% include "templates/includes/navbar/navbar_login.html" %}
+								{% if enable_multilanguage_support and display_language_picker_in_top_bar -%}
+									{% include "templates/includes/navbar/weblanguage.html" %}
+								{%- endif %}
+							</ul>
+						</nav>
+					</div>
+					<button class="hamburguer-btn hamburguer-btn-sticky-dark" data-set-active="false">
+						<span class="hamburguer">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<header id="header" class="side-header side-header-lg side-header-hide d-flex">
+	<div class="header-body">
+		<div class="header-container container d-flex h-100">
+			<div class="header-column flex-column justify-content-center h-100">
+				<div class="header-row">
+					<button class="hamburguer-btn hamburguer-btn-side-header hamburguer-btn-side-header-mobile-show active d-lg-none mb-10" data-set-active="false">
+						<span class="close">
+							<span></span>
+							<span></span>
+						</span>
+					</button>
+				</div>
+				<div class="header-row flex-row  justify-content-center">
+					<div class="header-logo d-none d-lg-block m-2 py-0">
+						<!--<a href="{{ url_prefix }}{{ home_page or "/"}}">{{ website_theme_image or "/"}}
+							<img alt="Hendaza" width="100" src="/files/logo.png">
+						</a>-->
+						<a href="{{ url_prefix }}{{ home_page or "/"}}" class=" text-2 text-decoration-none align-middle" style='text-align: center;'>
+							{{ brand_html or (frappe.get_hooks("brand_html") or ["Home"])[0] }}<br>
+						</a>
+					</div>
+				</div>
+				<div class="header-row flex-row  justify-content-center">
+					<div class="header-logo d-none d-lg-block m-0 py-0">
+						<a href="{{ url_prefix }}{{ home_page or "/"}}" class=" text-2 text-decoration-none align-middle" style='text-align: center;'>{{ slogan or "" }}</a>
+					</div>
+				</div>
+				<div class="header-row header-row-side-header flex-row h-100 overflow-hidden mb-5">
+					<div class="header-nav header-nav-links header-nav-links-side-header header-nav-links-vertical header-nav-links-vertical-slide align-self-center w-100">
+						<div class="header-nav-main header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-4 header-nav-main-sub-effect-1">
+							<nav class="collapse">
+								{% include "templates/includes/navbar/dropdown_items.html" %}
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div class="header-row justify-content-end pb-3">
+					<ul class="header-social-icons social-icons social-icons-clean">
+					{% if facebook_link %}
+						<li class="social-icons-facebook"><a href="{{ facebook_link|abs_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+					{% endif %}
+					{% if twitter_link %}
+						<li class="social-icons-twitter"><a href="{{ twitter_link|abs_url }}" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+					{% endif %}
+					{% if linked_in_link %}
+						<li class="social-icons-linkedin"><a href="{{ linked_in_link|abs_url }}" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+					{% endif %}
+					{% if instagram_link %}
+						<li class="social-icons-instagram"><a href="{{ instagram_link|abs_url }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+					{% endif %}
+					{% if google_link %}
+						<li class="social-icons-googleplus"><a href="{{ google_link|abs_url }}" target="_blank" title="Google Plus"><i class="fab fa-google"></i></a></li>
+					{% endif %}
+					</ul>
+					{% if copyright %}
+						<p class="text-1 pt-3">&copy; {{ _(copyright) }}</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

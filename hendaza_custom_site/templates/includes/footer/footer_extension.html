@@ -1,0 +1,79 @@
+{% if not hide_footer_signup %}
+<section class="section bg-color-quaternary border-0 pb-0 m-0">
+	<div class="container  bg-color-quaternary">
+		<div class="row pb-5">
+			<div class="col-lg-4 text-center text-lg-left">
+				<h5 class="text-3 text-color-light mb-3 capitalize">{{ _(newsletter_title or "") }}</h5>
+				<p class="text-2 mb-0 text-color-tertiary">{{ _(newsletter_description or "") }}</p>
+			</div>
+			<div class="col-lg-5 text-center text-lg-left px-4 mt-1 mt-lg-3">
+				<div class="pt-1 pt-lg-3 mt-1">
+					<div class="alert alert-success d-none" id="newsletterSuccess">{{ _(newsletter_success_message or "") }}</div>
+					<div class="alert alert-danger d-none" id="newsletterError"></div>
+						<div class="input-group input-group-rounded">
+							<input class="form-control form-control-sm bg-light px-4 text-2 text-color-primary"  placeholder="{{ _(newsletter_field or "") }}..." name="footer-subscribe-email" id="footer-subscribe-email" type="text">
+							<span class="input-group-append">
+								<button class="btn btn-primary  text-color-light text-2 py-3 px-4"  type="button" id="footer-subscribe-button"><strong>{{ _(newsletter_button or "") }}</strong></button>
+							</span>
+						</div>
+				</div>
+			</div>
+			<div class="col-lg-3 text-center text-lg-left">
+				<h5 class="text-3 text-color-light mb-3 capitalize mt-mb-5">{{ _(social_tab_title or "") }}</h5>
+				<div class="mt-1">
+					<ul class=" footer-social-icons social-icons social-icons-clean social-icons-big social-icons-opacity-light social-icons-icon-light mt-0 mt-lg-3 ">
+					{% if facebook_link %}
+						<li class="social-icons-facebook bg-color-primary"><a href="{{ facebook_link|abs_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+					{% endif %}
+					{% if twitter_link %}
+						<li class="social-icons-twitter bg-color-primary"><a href="{{ twitter_link|abs_url }}" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+					{% endif %}
+					{% if linked_in_link %}
+						<li class="social-icons-linkedin bg-color-primary"><a href="{{ linked_in_link|abs_url }}" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+					{% endif %}
+					{% if instagram_link %}
+						<li class="social-icons-instagram bg-color-primary"><a href="{{ instagram_link|abs_url }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+					{% endif %}
+					{% if google_link %}
+						<li class="social-icons-googleplus bg-color-primary"><a href="{{ google_link|abs_url }}" target="_blank" title="Google Plus"><i class="fab fa-google"></i></a></li>
+					{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+frappe.ready(function() {
+	$("#footer-subscribe-button").click(function() {
+
+		if($("#footer-subscribe-email").val() && validate_email($("#footer-subscribe-email").val())) {
+			$("#footer-subscribe-email").attr('disabled', true);
+			$("#footer-subscribe-button").html("Sending...")
+				.attr("disabled", true);
+			erpnext.subscribe_to_newsletter({
+				email: $("#footer-subscribe-email").val(),
+				callback: function(r) {
+					if(!r.exc) {
+						$("#newsletterError").html(__(""))
+							.addClass("btn-danger").attr("disabled", true);
+						$("#footer-subscribe-button").html(__("Added"))
+							.attr("disabled", true);
+					} else {
+						$("#newsletterError").html(__("Error: Not a valid id?"))
+							.addClass("btn-danger").attr("disabled", false);
+						$("#footer-subscribe-button").html(__("GO!"))
+							.addClass("btn-danger").attr("disabled", false);
+						$("#footer-subscribe-email").val("").attr('disabled', false);
+					}
+				}
+			});
+		}
+		else
+			frappe.msgprint(frappe._("Please enter valid email address"))
+	});
+});
+</script>
+
+{% endif %}

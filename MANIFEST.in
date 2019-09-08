@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include hendaza_custom_site *.css
+recursive-include hendaza_custom_site *.csv
+recursive-include hendaza_custom_site *.html
+recursive-include hendaza_custom_site *.ico
+recursive-include hendaza_custom_site *.js
+recursive-include hendaza_custom_site *.json
+recursive-include hendaza_custom_site *.md
+recursive-include hendaza_custom_site *.png
+recursive-include hendaza_custom_site *.py
+recursive-include hendaza_custom_site *.svg
+recursive-include hendaza_custom_site *.txt
+recursive-exclude hendaza_custom_site *.pyc

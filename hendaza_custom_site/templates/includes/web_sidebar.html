@@ -1,0 +1,28 @@
+<div class="col-lg-3">
+	<aside class="sidebar" id="sidebar" data-plugin-sticky data-plugin-options="{'minWidth': 991, 'containerSelector': '.container', 'padding': {'top': 110}}">
+		{% if sidebar_title %}
+			<h4 class="font-weight-semibold mb-4 title">{{ _(sidebar_title) }}</h4>
+		{% endif %}
+		<ul class="nav nav-list flex-column narrow mb-5">
+		{% for item in sidebar_items -%}
+			<li class="nav-item">
+			{% if item.type != 'input' %}
+				{% if item.route %}
+				<a href="{{ item.route }}" class="nav-link {% if (item.route or '')|abs_url == '/'+path %} active{% endif %}" {% if item.target %}target="{{ item.target }}"{% endif %}>{{ _(item.title or item.label) }}</a>
+					{% endif %}
+			{% else %}
+				<form action='{{ item.route }}' style="margin-right: 15px;">
+					<input name='q' class='form-control' type='text' style="outline: none"
+						placeholder="{{ _(item.title or item.label) }}">
+				</form>
+			{% endif %}
+			</li>
+			{%- endfor %}
+			{% if frappe.user != 'Guest' %}
+				<li class="nav-item">
+					<a href="/me">{{ _("My Account") }}</a>
+				</li>
+			{% endif %}
+		</ul>
+	</aside>
+</div>

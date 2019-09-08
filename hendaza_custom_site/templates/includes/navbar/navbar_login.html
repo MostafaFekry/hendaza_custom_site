@@ -1,0 +1,26 @@
+<!-- post login tools -->
+{% if not only_static %}
+<li class="nav-item dropdown nav-item-left-border nav-item-left-border-remove nav-item-left-border-md-show logged-in" id="website-post-login" data-label="website-post-login" style="display: none">
+	<a class="nav-link custom-text-color-topmenu" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<i class="far fa-user"></i> <span class="full-name"></span>
+		<i class="fas fa-angle-down"></i>
+	</a>
+	<div class="dropdown-menu" aria-labelledby="dropdownLanguage">
+	{%- for child in post_login -%}
+		{%- if child.url -%}
+			<a class="dropdown-item text-1" href="{{ child.url | abs_url }}" {{ child.target or '' }}
+				rel="nofollow">
+				{{ child.label }}
+			</a>
+		{%- endif -%}
+	{%- endfor %}
+		<a class='dropdown-item text-1 switch-to-desk hidden' href="/desk">{{ _('Switch To Desk') }}</a>
+	</div>
+</li>
+
+{% if not hide_login %}
+<li class="nav-item nav-item-anim-icon btn-login-area">
+	<a class="nav-link custom-text-color-topmenu" href="/login"><i class="far fa-user"></i> {{ _("Sign in") }}</a>
+</li>
+{% endif %}
+{% endif %}

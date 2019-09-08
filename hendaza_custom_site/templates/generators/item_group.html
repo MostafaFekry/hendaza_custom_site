@@ -1,0 +1,257 @@
+{% extends "templates/web.html" %}
+{% block slideshow %}
+{% endblock %}
+{% block page_content %}
+{% if is_group %}
+<div id="combinationFilters" class="filters mb-5">
+	<div class="row">	
+		{% if item_group_filter_unit_usage and item_group_filter_unit_usage|length > 0 %}
+		<div class="col-lg-6">
+			<h5 class="text-uppercase mb-3">{{_("Filter By Type") }}:</h5>
+			<ul class="nav nav-pills sort-source sort-source-style-3 portfolio-filter-group" data-filter-group="group2">
+				<li data-option-value="" class='nav-item {% if not frappe.form_dict.get("usage")%}active{% endif %}'><a class='nav-link text-1 text-uppercase {% if not frappe.form_dict.get("usage")%}active{% endif %}' href="#">{{_("Show All") }}</a></li>
+				{% for unit_usage in item_group_filter_unit_usage %}
+				<li class='nav-item {% if unit_usage.unit_usage == frappe.form_dict.get("usage")%}active{% endif %}' data-option-value='.{{ unit_usage.unit_usage|replace(" ", "_") }}'><a class='nav-link text-1 text-uppercase {% if unit_usage.unit_usage == frappe.form_dict.get("usage")%}active{% endif %}' href="#">{{ _(unit_usage.unit_usage) }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+		{% if item_group_filter_location and item_group_filter_location|length > 0 %}
+		<div class="col-lg-6">
+			<h5 class="text-uppercase mb-3">{{_("Filter By Location") }}:</h5>
+			<ul class="nav nav-pills sort-source sort-source-style-3 portfolio-filter-group" data-filter-group="group1">
+				<li data-option-value="" class="nav-item active"><a class="nav-link text-1 text-uppercase active" href="#">{{_("Show All") }}</a></li>
+				{% for location in item_group_filter_location %}
+				<li class="nav-item" data-option-value='.{{ location.territory_name|replace(" ", "_") }}'><a class="nav-link text-1 text-uppercase" href="#">{{ _(location.territory_name) }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+	</div>
+
+</div>
+
+{% else %}
+<div class="row pb-4 mb-2"  itemscope itemtype="http://schema.org/Product">
+	<div class="col-md-8  mb-md-0 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="300">
+		<div class="row">
+			<div class="col d-lg-none  d-md-none">
+				{% if image %}
+				<div class="col-md-3 m-0 p-0">
+					<span class="img-thumbnail d-block">
+						<img itemprop="image" class="img-fluid" src="{{ image }}" alt="{{ name }}">
+					</span>
+				</div>
+				{% endif %}
+				{% if description %}<!-- description -->
+				<div class="overflow-hidden">
+					<h2 class="text-color-dark font-weight-normal text-4 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="600">Project <strong class="font-weight-extra-bold text-color-primary">Description</strong></h2>
+				</div>
+				<p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800" itemprop="description">{{ description or ""}}</p>
+				{% endif %}
+				{% if website_share_files %}
+					<div class="btn-group appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="800" role="group">
+						<button id="btnGroupDrop1" type="button" class="mb-1 mt-1 mr-1 btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-file-download mr-1"></i> Download Bourchures</button>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+						{% for download in website_share_files %}
+							<a class="dropdown-item" href='{% if website_languages_request == "ar"%}{{ download.arabic_attach_document or download.attach_document or "" | abs_url}}{%- else -%}{{ download.attach_document or "" | abs_url}}{% endif %}' target='_blank'>{% if website_languages_request == "ar"%}{{ download.arabic_file_name or download.file_title or ""}}{% else %}{{ download.file_title or ""}}{% endif %}</a>
+						{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		{% if slideshow %}<!-- slideshow -->
+		{% include "templates/includes/slideshow_projects.html" %}
+		{% endif %}
+		
+		
+		
+		
+		<section class="section section-no-border mt-0">
+			<div class="container">
+			
+				<div class="overflow-hidden">
+					<h2 class="text-color-dark font-weight-normal text-4 mb-2 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1000">{{ _("Project <strong class='font-weight-extra-bold text-color-primary'>Details</strong>") }}</h2>
+				</div>
+				<ul class="list list-icons 	list-borders row m-0 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200">
+					{% if territory %}<li class="col-sm-6 col-lg-6"><i class="fas fa-map-marker-alt"></i> <strong class="text-color-dark font-weight-normal ">{{ _("Location") }}:</strong> <strong class="font-weight-extra-bold text-color-primary">{{ _(territory) }}</strong></li>{% endif %}
+					{% if unit_usage %}<li class="col-sm-6 col-lg-6"><i class="fas fa-check list-success"></i> <strong class="text-color-dark font-weight-normal ">{{ _("Unit Usage") }}:</strong> <strong class="font-weight-extra-bold text-color-primary">{{ _(unit_usage) }}</strong></li>{% endif %}
+					{% if website_specifications -%}
+					{% for d in website_specifications %}
+					<li class="col-sm-6 col-lg-6  appear-animation animated fadeInUp appear-animation-visible"  data-appear-animation="fadeInUp" data-appear-animation-delay="{{ loop.index }}00" style="animation-delay: {{ loop.index }}00ms;"><i class="{{ d.icon or 'fas fa-check' }}"></i> <strong class="text-color-dark font-weight-normal ">{{ _(d.label) }}:</strong> <strong class="font-weight-extra-bold text-color-primary">{{ _(d.description) }}</strong></li>
+					{% endfor %}
+					{% endif %}
+				</ul>
+			</div>
+		</section>
+		
+		
+		{% if google_maps %}
+		<!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
+		<h2 class="text-color-dark font-weight-normal text-4 mb-5 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1000">{{ _("Map <strong class='font-weight-extra-bold text-color-primary'>Location</strong>") }}</h2>
+		<div  class="google-map-custom-units">{{ google_maps }}</div>
+		{% endif %}
+		
+		<div class="tabs tabs-primary  mt-5  mb-10">
+			<ul class="nav nav-tabs">
+				<li class="nav-item active">
+					<a class="nav-link font-weight-extra-bold text-color-primary text-4" href="#popularColors1" data-toggle="tab">{{ _("Properties") }}</a>
+				</li>
+				<li class="nav-item d-none">
+					<a class="nav-link font-weight-extra-bold text-color-primary text-4" href="#recentColors1" data-toggle="tab">Recent</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="popularColors1" class="tab-pane active">
+					<div class="row">
+					{% if items %}
+						{% for i in range(0, page_length) %}
+							{% if items[i] %}
+								{%- set item = items[i] %}
+								<div class='col-sm-6 col-lg-4 isotope-item'>
+									<div class="portfolio-item">
+										<a href='{{ item.route|abs_url or "" }}'>
+											<span class="thumb-info thumb-info-lighten">
+												<span class="img-thumbnail img-thumbnail thumb-info-wrapper">
+													<img itemprop="image" src='{{ frappe.utils.quoted(item.thumbnail or item.website_image or item.image or "/assets/hendaza_custom_site/img/unimage.jpg") | abs_url or "" }}' class="img-fluid" alt="">
+													<span class="thumb-info-title">
+														<span class="thumb-info-inner" itemprop="name">{{ _(item.item_name or "") }}</span>
+														
+													</span>
+													<span class="thumb-info-action">
+														<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+													</span>
+												</span>
+											</span>
+										</a>
+									</div>
+								</div>
+							{% endif %}
+						{% endfor %}
+					{% else %}
+						<p>{{ _("No items listed") }}.</p>
+					{% endif %}	
+
+					</div>
+				</div>
+				<div id="recentColors1" class="tab-pane">
+					<p>Recent</p>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.</p>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-md-4 d-none d-md-block d-sm-none appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="300">
+		<aside class="sidebar" id="sidebar" data-plugin-sticky data-plugin-options="{'minWidth': 991, 'containerSelector': '.container', 'padding': {'top': 110}}">
+			<div class="row">
+				<div class="col">	
+					{% if image %}
+					<div class="col-md-5 m-0 p-0">
+						<span class="img-thumbnail d-block">
+							<img itemprop="image" class="img-fluid" src="{{ image }}" alt="{{ name }}">
+						</span>
+					</div>
+					{% endif %}
+					{% if description %}<!-- description -->
+					<div class="overflow-hidden">
+						<h2 class="text-color-dark font-weight-normal text-4 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="600">{{ _("Project <strong class='font-weight-extra-bold text-color-primary'>Description</strong>") }}</h2>
+					</div>
+					<p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800" itemprop="description">{{ _(description or "")}}</p>
+					{% endif %}
+					
+					{% if website_share_files %}
+					<div class="btn-group appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="800" role="group">
+						<button id="btnGroupDrop1" type="button" class="mb-1 mt-1 mr-1 btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-file-download mr-1"></i> {{ _("Download Bourchures") }}</button>
+						<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+						{% for download in website_share_files %}
+							<a class="dropdown-item" href='{% if website_languages_request == "ar"%}{{ download.arabic_attach_document or download.attach_document or "" | abs_url}}{%- else -%}{{ download.attach_document or "" | abs_url}}{% endif %}' target='_blank'>{% if website_languages_request == "ar"%}{{ download.arabic_file_name or download.file_title or ""}}{% else %}{{ download.file_title or ""}}{% endif %}</a>
+						{% endfor %}
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+
+		</aside>
+	</div>
+</div>
+
+{% endif %}
+{% if is_group %}
+<div class="sort-destination-loader sort-destination-loader-showing itemscope itemtype="http://schema.org/Product">				
+	<div class="row portfolio-list" id="search-list">
+		{% if items %}
+			{% for i in range(0, page_length) %}
+				{% if items[i] %}
+					{%- set item = items[i] %}
+					{% set item_territory, item_unit_usage = frappe.db.get_value('Item Group', item.name, ['territory', 'unit_usage']) %}
+					<div class='col-sm-6 col-lg-3 isotope-item {{ item_territory|replace(" ", "_") or "" }} {{ item_unit_usage|replace(" ", "_") or "" }}'>
+						<div class="portfolio-item">
+							<a href='{{ item.route|abs_url or "" }}'>
+								<span class="thumb-info thumb-info-lighten">
+									<span class="img-thumbnail img-thumbnail thumb-info-wrapper">
+										<img itemprop="image" src='{{ frappe.utils.quoted(item.image or "/assets/hendaza_custom_site/img/unimage.jpg") | abs_url or "" }}' class="img-fluid" alt="">
+										<span class="thumb-info-title">
+											<span class="thumb-info-inner" itemprop="name">{{ _(item.name or "") }}</span>
+											{% if item_territory or item_unit_usage %}<span class="thumb-info-type">{{ _(item_territory or "") }}{% if item_territory %} - {% endif %}{{ _(item_unit_usage or "") }}</span>{% endif %}
+										</span>
+										<span class="thumb-info-action">
+											<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+										</span>
+									</span>
+								</span>
+							</a>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		<div class="text-center item-group-nav-buttons">
+			{% if frappe.form_dict.start|int > 0 %}
+			<a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}">{{ _("Prev") }}</a>
+			{% endif %}
+			{% if items|length > page_length %}
+			<a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int + page_length }}">{{ _("Next") }}</a>
+			{% endif %}
+		</div>
+		{% else %}
+			<div class="text-muted">{{ _("No items listed") }}.</div>
+		{% endif %}			
+	</div>
+</div>
+{% endif %}
+
+{% endblock %}
+{% block topfooter %}
+{% if not is_group and related_projects%}
+<section class="section section-height-3 bg-color-grey m-0 p-5 border-0 appear-animation" data-appear-animation="fadeIn" data-plugin-options="{'accY': -150}">
+	<div class="container">
+		<h4 class="mb-3 text-4 text-uppercase">{{ _("Related <strong class='font-weight-extra-bold text-color-primary'>Projects") }}</strong></h4>
+		<div class="row">
+			<div class="owl-carousel owl-theme stage-margin" data-plugin-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
+			{% for d in related_projects -%}
+				{% if d.image%}
+					<div class="portfolio-item">
+						<a href="{{ d.route|abs_url }}">
+							<span class="thumb-info thumb-info-lighten">
+								<span class="img-thumbnail img-thumbnail thumb-info-wrapper">
+									<img src='{{ frappe.utils.quoted(d.image  or "/assets/hendaza_custom_site/img/unimage.jpg") | abs_url }}' class="img-fluid " alt="">
+									<span class="thumb-info-action">
+										<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+									</span>
+								</span>
+							</span>
+						</a>
+					</div>
+				{% endif %}
+			{%- endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{% endblock %}
+{%- block script %}<!-- Examples -->
+<script src="/assets/hendaza_custom_site/js/examples/examples.portfolio.js"></script>{%- endblock %}

@@ -1,0 +1,39 @@
+{% extends base_template_path %}
+{% block hero %}{% endblock %}
+
+{% macro container_attributes() %}
+id="page-{{ name or route }}" data-path="{{ pathname }}"
+{%- if page_or_generator=="Generator" %}source-type="Generator" data-doctype="{{ doctype }}"{% endif %}
+{% endmacro %}
+
+{% block content %}
+<section class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-light overlay-show overlay-op-8 {% if show_search %}mb-0{% endif %}" style='background-image: url({% if header_background_image %}{{ frappe.utils.quoted(header_background_image) | abs_url}}{% else %}"/assets/hendaza_custom_site/img/slides/slide-corporate-6-1.jpg"{% endif %});'>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 align-self-center p-static order-2 text-center">
+				{% block header %}<h1><strong class="text-color-primary">{{ _(title or name or "") }}</strong></h1>{% endblock %}
+				<span class="sub-title text-color-dark">{{ _(light_description or "") }}</span>
+			</div>
+			<div class="col-md-12 align-self-center order-1 mt-5">
+				{% block breadcrumbs %}{% include 'templates/includes/breadcrumbs.html' %}{% endblock %}
+			</div>
+		</div>
+	</div>
+</section>
+{% block unitssearch %}
+{% endblock %}
+
+{% block slideshow %}
+{% include "templates/includes/slideshow.html" %}
+{% endblock %}
+<div class="container" {{ container_attributes() }}>
+	<div class="row {% if no_page_content ==1 %}mt-0 mb-0{% else %}mt-5 mb-5{% endif %}">
+		{% block sidebar %}
+		{% if show_sidebar %}
+			{% include "templates/includes/web_sidebar.html" %}
+		{% endif %}
+		{% endblock %}
+		<div class="{% if show_sidebar %}col-lg-9{% elif sidebarshow_item_group %}col-lg-9{% else %} col{% endif %}">{%- block page_content -%}{%- endblock -%}</div>
+	</div>
+</div>
+{% endblock %}

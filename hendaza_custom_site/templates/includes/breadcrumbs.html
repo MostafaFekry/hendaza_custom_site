@@ -1,0 +1,8 @@
+{% if parents and parents|length > 1 %}
+<ul class="breadcrumb breadcrumb-dark d-block text-center">
+	{% for parent in parents %}
+	<li><a href="{{ url_prefix }}{{ parent.route | abs_url }}" itemprop="url"><span itemprop="title">{{ _(parent.title or parent.label or parent.name) or "" }}</span></a></li>
+	{% endfor %}
+	<li class="active"><span itemprop="title">{{ _(title) or "" }}</span></li>
+</ul>
+{% endif %}

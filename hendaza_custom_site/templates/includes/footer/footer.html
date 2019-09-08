@@ -1,0 +1,45 @@
+{% block extension %}
+	{% include "templates/includes/footer/footer_extension.html" %}
+{% endblock %}
+<footer id="footer" class="footer-reveal custom-bg-color-1 footer-reveal border-top-0 m-0">
+	<div class="container footer-top-light-border">
+		<div class="row py-4">
+			<div class="col-lg-3 mb-4 mb-lg-0 text-center text-lg-left pt-3">
+				<h5 class="text-5 text-transform-none font-weight-semibold text-color-light mb-4">{{ _(contact_us_tab_title or "") }}</h5>
+				<p class="text-4 mb-2 text-color-tertiary"><span class="text-color-light">{{ _("Address") }}:</span> {{ _(contact_us_address or "") }}</p>
+				{% if contact_us_hotline -%}<p class="text-4 mb-2 text-color-tertiary"><span class="text-color-light">{{ _("Hotline") }}:</span> <a href="tel:{{ contact_us_hotline or '' }}">{{ contact_us_hotline  or "" }}</a></p>{%- endif %}
+				<p class="text-4 mb-2 text-color-tertiary"><span class="text-color-light">{{ _("Phone") }}:</span> {{ contact_us_phone  or "" }}</p>
+				<p class="text-4 mb-2 text-color-tertiary"><span class="text-color-light">{{ _("Email") }}:</span> <a href="mailto:{{ contact_us_email or '' }}">{{ contact_us_email or "" }}</a></p>
+			</div>
+			<div class="col-lg-6 mb-0 mb-lg-0 text-center text-lg-left pt-0">
+				{% if footer_items -%}
+				<div class="row m-0 p-0">
+					{% include "templates/includes/footer/footer_items.html" %}
+				</div>
+				{% endif %}
+			</div>
+			{% if footer_logo_code -%}
+			<div class="col-lg-2 text-center text-lg-center pt-3">
+				<div class="header-logo">
+					<a href="{{ url_prefix }}{{ home_page or "/"}}">
+						{{ footer_logo_code or ""}}
+					</a>
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="container container-lg">
+		<div class="footer-copyright footer-copyright-style-2">
+			<div class="py-2">
+				<div class="row py-4">
+					<div class="col d-flex align-items-center justify-content-center mb-4 mb-lg-0">
+						{% if website_languages_copyright or copyright %}
+							<p>&copy; {{ _(website_languages_copyright or copyright) }}</p>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

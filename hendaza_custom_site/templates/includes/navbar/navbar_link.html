@@ -1,0 +1,15 @@
+						<li  data-label='{{ page.label }}' {% if page.child_items %}class="dropdown" {% else %}class="nav" {% endif %}>
+							<a {% if not page.child_items -%} class="nav-link {% if (page.url or '')|abs_url == '/'+path %} active{% endif %}" href="{{ (page.url or '')|abs_url }}" {%- endif %} {% if page.child_items %} class="dropdown-item dropdown-toggle" href="#"{% endif %} {{ page.target or ''}}>{{ _(page.label) }}</a>
+							{%- if page.child_items -%}
+								<ul class="dropdown-menu">
+									<li class="back-button d-none d-lg-block">
+										<a>{{ _(page.label) }}</a>
+									</li>
+								{%- for child in page.child_items -%}
+									<li data-label='{{ child.label }}'>
+										<a class="dropdown-item" href="{{ child.url | abs_url }}" {{ child.target or '' }}>{{ _(child.label) }}</a>
+									</li>
+								{%- endfor -%}
+								</ul>
+							{%- endif %}
+						</li>

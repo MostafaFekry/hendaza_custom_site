@@ -1,0 +1,281 @@
+{% extends "templates/web.html" %}
+
+{% block slideshow %}
+{% endblock %}
+
+{% block page_content %}
+{% from "erpnext/templates/includes/macros.html" import product_image %}
+<div class="row pb-5 pt-3"  itemscope itemtype="http://schema.org/Product">
+	<div class="col-lg-8">
+		<div class="row">
+			<div class="col d-lg-none  d-md-none">
+				<h2 itemprop="name" class="text-color-primary mb-3">{{ item_name }}</h2>
+				<div itemprop="description" class="item-desc mb-3">
+				{% if frappe.utils.strip_html(web_long_description or '') %}
+					{{ web_long_description | safe }}
+				{% elif frappe.utils.strip_html(description or '')  %}
+					{{ description | safe }}
+				{% else %}
+					{{ _("No description given") }}
+				{% endif  %}
+				</div>
+				<h4 class="text-color-dark font-weight-normal mb-0">Project <strong class="font-weight-extra-bold text-color-primary">{{ item_group or "" }}</strong></h4>
+				<h2 class="text-color-dark font-weight-normal text-4 mb-0">{{ _("Unit Code") }}: <strong class="font-weight-extra-bold text-color-primary">{{ variant and variant.name or name }}</strong></h2>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+
+				<div class="owl-carousel owl-theme nav-inside nav-inside-edge nav-squared nav-with-transparency nav-primary" data-plugin-options="{'items': 1, 'autoplay': true, 'autoplayTimeout': 3000, 'nav': true}">
+				{% if slideshow %}
+				{% set slideshow_items = frappe.get_list(doctype="Website Slideshow Item",  fields=["image"], filters={ "parent": doc.slideshow }) %}
+					{%- for slideshow_item in slideshow_items -%}
+						{% set image_src = slideshow_item['image'] %}
+						{% if image_src %}
+					<div>
+						<img alt="" class="img-fluid" src="{{ image_src }}">
+					</div>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					<div>
+						{{ product_image(website_image, "product-full-image") }}
+					</div>
+				{% endif %}
+
+				</div>
+			</div>
+		</div>
+		<section class="section section-no-border">
+			<div class="container">
+			<h4 class="mt-3 mb-3 text-color-primary">{{ _("Features") }}</h4>
+
+				<ul class="list list-icons list-borders row m-0">
+				{% if territory %}<li class="col-sm-6 col-lg-6 appear-animation animated fadeInUp appear-animation-visible"  data-appear-animation="fadeInUp" data-appear-animation-delay="100" style="animation-delay: 100ms;"><i class="fas fa-map-marker-alt"></i> <strong class="text-color-dark font-weight-normal ">{{ _("Location") }}:</strong> <strong class="font-weight-extra-bold text-color-primary">{{ _(territory) }}</strong></li>{% endif %}
+				{% if unit_usage %}<li class="col-sm-6 col-lg-6 appear-animation animated fadeInUp appear-animation-visible"  data-appear-animation="fadeInUp" data-appear-animation-delay="100" style="animation-delay: 100ms;"><i class="fas fa-check list-success"></i> <strong class="text-color-dark font-weight-normal ">{{ _("Unit Usage") }}:</strong> <strong class="font-weight-extra-bold text-color-primary">{{ _(unit_usage) }}</strong></li>{% endif %}
+				{% if has_variants and attributes %}
+
+				{% for d in attributes %}
+					{% if attribute_values[d.attribute] -%}
+					<li class="col-sm-6 col-lg-6 {% if (attribute_values[d.attribute] | len)==1 -%} {%- endif %} appear-animation animated fadeInUp appear-animation-visible"  data-appear-animation="fadeInUp" data-appear-animation-delay="{{ loop.index }}00" style="animation-delay: {{ loop.index }}00ms;"><i class="fas fa-check list-success"></i>  <strong class="text-color-dark font-weight-normal ">{{ _(d.attribute) }}:</strong>
+					{% for value in attribute_values[d.attribute] %}
+						{% if selected_attributes and selected_attributes[d.attribute]==value -%}
+							 <strong class="font-weight-extra-bold text-color-primary">{{ _(value) }}</strong>
+						{%- endif %}
+					{% endfor %}
+					</li>
+					{%- endif %}
+				{% endfor %}
+				{% endif %}
+				
+				
+				{% if website_specifications -%}
+				
+					{% for d in website_specifications %}
+					<li class="col-sm-6 col-lg-6 appear-animation animated fadeInUp appear-animation-visible"  data-appear-animation="fadeInUp" data-appear-animation-delay="{{ loop.index }}00" style="animation-delay: {{ loop.index }}00ms;"><i class="{{ d.icon or 'fas fa-check' }}"></i> <strong class="text-color-dark font-weight-normal ">{{ _(d.label) }}:</strong> <strong class="font-weight-extra-bold text-color-primary">{{ _(d.description) }}</strong></li>
+					{% endfor %}
+				
+				{%- endif %}
+				</ul>
+			</div>
+		</section>
+		<div class="row">
+			<div class="col">
+				{% if google_maps -%}
+				<h2 class="text-color-dark font-weight-normal text-4 mb-5 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="1000">{{ _("Map <strong class='font-weight-extra-bold text-color-primary'>Location</strong>") }}</h2>
+				<div id="googlemaps" class="google-map-custom-units mb-0">{{ google_maps }}</div>
+				{%- endif %}
+				{% if variants -%}
+				<div class="tabs tabs-primary  mt-5  mb-10">
+					<ul class="nav nav-tabs">
+						<li class="nav-item active">
+							<a class="nav-link font-weight-extra-bold text-color-primary text-4" href="#popularColors1" data-toggle="tab">{{ _("Properties") }}</a>
+						</li>
+						<li class="nav-item d-none">
+							<a class="nav-link font-weight-extra-bold text-color-primary text-4" href="#recentColors1" data-toggle="tab">Recent</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="popularColors1" class="tab-pane active">
+							<div class="row">
+							{% if variants %}
+								{% for v in variants %}
+									<div class='col-sm-6 col-lg-4'>
+										<div class="portfolio-item">
+											<a href="{{ '?variant='+v.name }}">
+												<span class="thumb-info thumb-info-lighten">
+													<span class="img-thumbnail img-thumbnail thumb-info-wrapper">
+														<img itemprop="image" src="{{ frappe.utils.quoted(thumbnail or website_image or image) | abs_url }}" class="img-fluid" alt="">
+														<span class="thumb-info-title">
+															<span class="thumb-info-inner" itemprop="name">{{ _(v.name) }}</span>
+														</span>
+														<span class="thumb-info-action">
+															<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+														</span>
+													</span>
+												</span>
+											</a>
+										</div>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="text-muted">{{ _("No items listed") }}.</div>
+							{% endif %}	
+		
+							</div>
+						</div>
+						<div id="recentColors1" class="tab-pane">
+							<p>Recent</p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.</p>
+						</div>
+					</div>
+				</div>
+				{%- endif %}
+				<section class="section section-no-border mb-0 pb-0">
+				<div class="container">
+						<h4 class="m-0 mb-3 text-color-primary">{{ _("Request Information") }}</h4> 
+						<p>{{ _("Contact us to request more information") }}</p>
+
+						<form id="contactForm" class="contact-form custom-form-style-request-unit contact-page" method="POST"" method="POST">
+							<div class="form-row">
+								<div class="form-group col">
+							
+							
+									<div class="form-row">
+										<div class="form-group col-lg-6">
+											<div class="form-control-custom-request-unit">
+												<i class="icon-user icons"></i>
+												<input type="hidden" value="{{ variant and variant.name or name }}" class="form-control" name="item-code" id="item-code" required>
+												<input type="text" value=""  placeholder="{{ _('Name') }} *" value="" data-msg-required="{{ _('Please enter your name.') }}" maxlength="100" class="form-control" name="lead_name" id="lead_name" required>
+											</div>
+										</div>
+										<div class="form-group col-lg-6">
+											<div class="form-control-custom-request-unit">
+												<i class="icon-organization icons"></i>
+												<input type="text"  placeholder="{{ _('Organization Name') }}" value="" maxlength="100" class="form-control" name="company_name" id="company_name">
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col-lg-6">
+											<div class="form-control-custom-request-unit">
+												<i class="icon-screen-smartphone icons"></i>
+												<input type="tel" value=""  placeholder="{{ _('Mobile No.') }} *" value="" data-msg-required="{{ _('Please enter your mobile No..') }}" maxlength="100" class="form-control" name="mobile_no" id="mobile_no" required>
+											</div>
+										</div>
+										<div class="form-group col-lg-6">
+											<div class="form-control-custom-request-unit">
+												<i class="icon-envelope icons"></i>
+												<input type="email"  placeholder="{{ _('Email') }} *" value="" data-msg-required="{{ _('Please enter your email address.') }}" data-msg-email="{{ _('Please enter a valid email address.') }}" maxlength="100" class="form-control" name="email_id" id="email_id" required>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col">
+											<div class="form-control-custom-request-unit custom-select-style-request-unit mb-0">
+												<i class="icon-target icons"></i>
+												<input type="text" value=""  placeholder="{{ _('Subject') }} *" value="" data-msg-required="{{ _('Please enter subject.') }}" maxlength="100" class="form-control" name="subject" id="subject" required>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="form-group col">
+											<div class="form-control-custom-request-unit">
+												<i class="icon-bubble icons"></i>											
+												<textarea maxlength="5000" data-msg-required="{{ _('Please enter your message.') }}" rows="4" class="form-control" name="message" id="message" placeholder="{{ _('Message') }} *" required></textarea>
+											</div>
+										</div>
+									</div>
+								
+									<div class="form-row">
+										<div class="form-group col align-items-center">
+											<input type="submit" value="{{ _('Send Request') }}" class="btn btn-outline align-right custom-btn-style-request-unit text-uppercase btn-send" data-loading-text="Loading...">
+											<div class="contact-form-success alert alert-success d-none mt-4" id="contactSuccess">
+												{{ _("<strong>Success!</strong> Your message has been sent to us.") }}
+											</div>
+
+											<div class="contact-form-error alert alert-danger d-none mt-4" id="contact-alert">
+												{{ _("<strong>Error!</strong> There was an error sending your message.") }}
+												<span class="mail-error-message text-1 mt-2 d-block" id="mailErrorMessage"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</form>
+					
+				</div>
+			</section>
+
+			</div>
+		</div>
+
+	</div>
+	<div class="col-lg-4 d-none d-md-block d-sm-none appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="300">
+		<aside class="sidebar" id="sidebar" data-plugin-sticky data-plugin-options="{'minWidth': 991, 'containerSelector': '.container', 'padding': {'top': 110}}">
+			<h2 itemprop="name" class="text-color-primary mb-3">{{ _(item_name) }}</h2>
+			<div itemprop="description" class="item-desc mb-3">
+			{{ _(web_long_description or description or "") }}
+			</div>
+			<h4 class="text-color-dark font-weight-normal mb-0">{{ _("Project") }} <strong class="font-weight-extra-bold text-color-primary">{{ item_group or "" }}</strong></h4>
+			<h2 class="text-color-dark font-weight-normal text-4 mb-0">{{ _("Unit Code") }}: <strong class="font-weight-extra-bold text-color-primary">{{ _(variant and variant.name or name) }}</strong></h2>
+			{% if website_share_files %}
+				<div class="btn-group appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="800" role="group">
+					<button id="btnGroupDrop1" type="button" class="mb-1 mt-1 mr-1 btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-file-download mr-1"></i> {{ _("Download Bourchures") }}</button>
+					<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+					{% for download in website_share_files %}
+						<a class="dropdown-item" href='{% if website_languages_request == "ar"%}{{ download.arabic_attach_document or download.attach_document or "" | abs_url}}{%- else -%}{{ download.attach_document or "" | abs_url}}{% endif %}' target='_blank'>{% if website_languages_request == "ar"%}{{ download.arabic_file_name or download.file_title or ""}}{% else %}{{ download.file_title or ""}}{% endif %}</a>
+					{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+
+		</aside>
+	</div>
+</div>
+<script>
+	{% include "templates/includes/item_inquiry.js" %}
+</script>
+<script>
+	{% include "templates/includes/product_page.js" %}
+
+	{% if variant_info %}
+	window.variant_info = {{ variant_info }};
+	{% else %}
+	window.variant_info = null;
+	{% endif %}
+</script>
+{% endblock %}
+{% block topfooter %}
+{% if variants%}
+<section class="section section-height-3 bg-color-grey m-0 p-5 border-0 appear-animation" data-appear-animation="fadeIn" data-plugin-options="{'accY': -150}">
+	<div class="container">
+		<h4 class="mb-3 text-4 text-uppercase">{{ _("Related <strong class='font-weight-extra-bold text-color-primary'>Units</strong>") }}</h4>
+		<div class="row">
+			<div class="owl-carousel owl-theme stage-margin" data-plugin-options="{'items': 4, 'margin': 10, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 40}">
+			{% for v in variants %}
+					<div class="portfolio-item">
+						<a href="{{ '?variant='+v.name }}">
+							<span class="thumb-info thumb-info-lighten">
+								<span class="img-thumbnail img-thumbnail thumb-info-wrapper">
+									<img src="{{ frappe.utils.quoted(thumbnail or website_image or image) | abs_url }}" class="img-fluid " alt="">
+									<span class="thumb-info-title">
+										<span class="thumb-info-inner" itemprop="name">{{ _(v.name) }}</span>
+									</span>
+									<span class="thumb-info-action">
+										<span class="thumb-info-action-icon bg-dark opacity-8"><i class="fas fa-plus"></i></span>
+									</span>
+								</span>
+							</span>
+						</a>
+					</div>
+				
+			{%- endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}
+{% endblock %}

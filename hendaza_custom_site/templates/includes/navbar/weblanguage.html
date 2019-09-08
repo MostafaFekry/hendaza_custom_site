@@ -1,0 +1,13 @@
+{% if website_languages_items -%}
+<li class="nav-item dropdown nav-item-left-border d-none d-sm-block nav-item-left-border-remove nav-item-left-border-md-show">
+	<a class="nav-link custom-text-color-topmenu" href="#" role="button" id="dropdownLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<!--<img src="/assets/website_management/img/blank.gif" class="flag flag-us" alt="Language" />--><i class="fas fa-globe"></i> {{ _("Language") }}
+		<i class="fas fa-angle-down"></i>
+	</a>
+	<div class="dropdown-menu" aria-labelledby="dropdownLanguage">
+	{%- for page in website_languages_items -%}
+		<a class="dropdown-item text-1" href="/{{ page.language }}/{{ path }}"><img src="/assets/website_management/img/blank.gif" class="flag flag-{{ page.language_flag }}" alt="{{ page.language_name }}" /> {{ page.language_name }}</a>
+	{%- endfor %}
+	</div>
+</li>
+{%- endif %}

@@ -1,0 +1,143 @@
+{% extends "templates/web.html" %}
+
+{% block title %}{{ _(title) }}{% endblock %}
+
+
+{% block page_content %}
+
+<article class="about-content">
+	{{ doc.company_introduction or """<p>Some Introduction about your company that you would
+			like your website visitor to know.
+			More people than you think will read your About page.
+			People always like to know who the are doing business with.
+			Be authentic and avoid using jargon like 'value added services' etc.
+			Be sure to update your company history and
+			list of key team members in Website > About Us Settings</p>""" }}
+
+<div class="row mt-3 mb-5">
+		{% if doc.mission_title %}
+		<div class="col-md-4 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="800">
+			<h3 class="font-weight-bold text-4 mb-2 text-color-primary">{{ _(doc.mission_title) }}</h3>
+			<p>{{ _(doc.mission_description) }}</p>
+		</div>
+		{% endif %}
+		{% if doc.vision_title %}
+		<div class="col-md-4 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="600">
+			<h3 class="font-weight-bold text-4 mb-2 text-color-primary">{{ _(doc.vision_title) }}</h3>
+			<p>{{ _(doc.vision_description) }}</p>
+		</div>
+		{% endif %}
+		{% if doc.why_us_title %}
+		<div class="col-md-4 appear-animation" data-appear-animation="fadeInRightShorter" data-appear-animation-delay="800">
+			<h3 class="font-weight-bold text-4 mb-2 text-color-primary">{{ _(doc.why_us_title) }}</h3>
+			<p>{{ _(doc.why_us_description) }}</p>
+		</div>
+		{% endif %}
+	</div>
+	
+	{% if doc.get({"doctype":"Company History"}) %}
+	<div class="row">
+		<div class="col py-4">
+			<hr class="solid">
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-8 mx-md-auto text-center">
+
+			<h2 class="text-color-dark font-weight-normal text-5 mb-0 pt-2"><strong class="font-weight-extra-bold text-color-primary">{{ _(doc.company_history_heading or "Our History") }}</strong></h2>
+			{% if doc.history_description %}<p>{{ _(doc.history_description) }}</p>{% endif %}
+			
+			<section class="timeline">
+				<div class="timeline-body">
+				{% for d in doc.get({"doctype":"Company History"}) %}
+					{% if loop.index==1 %}
+					<div class="timeline-date">
+						<h3 class="text-primary font-weight-bold">{{ d.year }}</h3>
+					</div>
+					{% endif %}
+					{% if d.old_year != d.year and loop.index !=1 %}
+					<div class="timeline-date">
+						<h3 class="text-primary font-weight-bold">{{ d.year }}</h3>
+					</div>
+					{% endif %}
+					<article class="timeline-box {% if loop.index%2 ==0 %}left{% else %}right{% endif %} post post-medium" data-appear-animation="fadeIn" data-appear-animation-delay="{{loop.index}}00">
+						<div class="timeline-box-arrow"></div>
+						<div class="p-2">
+							{% if d.image %}<img alt="" class="img-fluid" src="{{ d.image }}" />{% endif %}
+							<h3 class="font-weight-bold text-3 mt-3 mb-1 text-color-primary">{{ _(d.title) }}</h3>
+							{% if d.highlight %}<p class="mb-0 text-2">{{ _(d.highlight) }}</p>{% endif %}
+						</div>
+					</article>
+					{% if company_history_position == "right" %}
+						{% set company_history_position = "left" %}
+					{% else %}
+						{% set company_history_position = "right" %}
+					{% endif %}
+				{% endfor %}
+				</div>
+			</section>
+		</div>
+	</div>
+	{% endif %}
+	
+</article>
+{% endblock %}
+{% block topfooter %}
+	{% if doc.who_we_are_title %}
+	<section class="section section-height-3 bg-color-grey-scale-1 m-0 border-0">
+		<div class="container">
+			<div class="row align-items-center mb-5">
+				<div class="col-lg-7 pr-5 appear-animation" data-appear-animation="fadeInRightShorter">
+					<h2 class="font-weight-normal text-6 mb-4">{{ _(doc.who_we_are_title) }}</h2>
+					<p class="lead pr-2 mb-4">{{ _(doc.who_we_are_description) }}</p>
+					
+				</div>
+				<div class="col-lg-5">
+					<div class="row mt-5 mt-lg-0">
+						<div class="col-md-8 col-lg-6 text-center text-lg-left mx-auto">
+							<img class="img-fluid m-3 my-0 mt-lg-5 pt-lg-5 appear-animation" src="{{ doc.pic_1 }}" alt="Office" data-appear-animation="expandIn" data-appear-animation-delay="200">
+						</div>
+						<div class="col-md-8 col-lg-6 pl-lg-0 text-center text-lg-left mx-auto">
+							<img class="img-fluid m-3 my-0 appear-animation" src="{{ doc.pic_2 }}" alt="Office" data-appear-animation="expandIn" data-appear-animation-delay="400">
+							<img class="img-fluid m-3 my-0 appear-animation" src="{{ doc.pic_3 }}" alt="Office" data-appear-animation="expandIn" data-appear-animation-delay="200">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endif %}
+	{% if doc.get({"doctype":"About Us Team Member"}) %}
+	<section class="section-primary">
+		<div class="container">
+			<div class="row pt-5 pb-5">
+				<div class="owl-carousel owl-theme nav-style-1 stage-margin" data-plugin-options="{'responsive': {'576': {'items': 1}, '768': {'items': 1}, '992': {'items': 1}, '1200': {'items': 1}}, 'loop': true, 'nav': false, 'dots': false, 'stagePadding': 40, 'autoplay': true, 'autoplayTimeout': 6000, 'loop': true}">
+				{% for d in doc.get({"doctype":"About Us Team Member"}) %}
+					<div class="row justify-content-center" itemscope itemtype="http://schema.org/Person">
+						<div class="col-lg-8 pt-4 mt-3">
+							<div class="testimonial testimonial-style-2 testimonial-with-quotes mb-0">
+								{% if d.image_link %}<div class="testimonial-author">
+									<img src="{{ d.image_link }}" class="img-fluid rounded-circle mb-0" alt="">
+								</div>
+								{% else %}<div class="testimonial-quote">“</div>
+								{% endif %}
+								<blockquote>
+									<p class="font-weight-light" itemprop="description">{{ _(d.bio) }}</p>
+								</blockquote>
+								<div class="testimonial-author">
+									<p><strong class="font-weight-extra-bold text-2" itemprop="name">{{ _(d.full_name) }}</strong><span class="text-secondary">{{ _(d.position) }}</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+	{% endif %}
+{% endblock %}
+	
+	
+	{{ doc.footer or "" }}

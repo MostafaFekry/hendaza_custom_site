@@ -1,0 +1,79 @@
+{
+ "autoname": "hash",
+ "creation": "2019-09-07 03:14:56.739135",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_code",
+  "column_break_2",
+  "item_name",
+  "section_break_4",
+  "image",
+  "route",
+  "territory",
+  "unit_usage"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Code",
+   "options": "Item",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "item_code.image",
+   "fieldname": "image",
+   "fieldtype": "Read Only",
+   "label": "Image"
+  },
+  {
+   "fetch_from": "item_code.route",
+   "fieldname": "route",
+   "fieldtype": "Read Only",
+   "label": "Route"
+  },
+  {
+   "fetch_from": "item_code.territory",
+   "fieldname": "territory",
+   "fieldtype": "Read Only",
+   "label": "Territory"
+  },
+  {
+   "fetch_from": "item_code.unit_usage",
+   "fieldname": "unit_usage",
+   "fieldtype": "Read Only",
+   "label": "Unit Usage"
+  }
+ ],
+ "istable": 1,
+ "modified": "2019-09-07 03:14:56.739135",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Homepage Products Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,180 @@
+{% extends "templates/base.html" %}
+{% block title %}Hendaza Investment and Urban Development{% endblock %}
+
+{% block head_include %}
+	<meta name="keywords" content="Hendaza Investment and Urban Development" />
+		<meta name="description" content="Hendaza Investment and Urban Development">
+{% endblock %}
+
+{% block content %}
+{% include "templates/includes/home_slideshow.html" %}
+
+{% if homepage.display_services_section and homepage.website_services_item%}
+{% if homepage.services_section_title%}
+<section class="m-2 pb-3">
+	<div class="container pt-4 pb-3">
+		<div class="row">
+			<div class="col text-center">
+				<h2 class="mb-0 mt-3 font-weight-bold text-6 text-color-primary">{{ _(homepage.services_section_title or "") }}</h2>
+				{% if homepage.services_section_title%}<p class="text-4 mb-3">{{ _(homepage.services_section_description or "") }}</p>{% endif %}
+				<div class="divider divider-secondary divider-small divider-small-center mb-3">
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endif %}
+
+<div class="container-fluid">
+{% for servicesitem in homepage.website_services_item %}
+	{% if loop.index==1 %}<div class="row featured-boxes-full featured-boxes-full-scale clearfix">{% endif %}
+	
+		
+		<div class=" col-lg-{{ (12/homepage.count_services_item_in_row) |int }}  featured-box-full featured-box-full-primary">
+			<a href="{{ servicesitem.route or "" | abs_url }}" class="text-decoration-none  appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="{{ loop.index }}00">
+					<i class="{{ servicesitem.services_icon or ""}}"></i>
+					<h4 class="font-weight-bold text-color-light text-5 text-capitalize ls-0 my-3">{{ _(servicesitem.services_name or "") }}</h4>
+					<p>{{ _(servicesitem.description or "") }}</p>
+			</a>
+		</div>
+	{% if loop.index%homepage.count_services_item_in_row ==0 %}</div><div class="row featured-boxes-full featured-boxes-full-scale clearfix">{% endif %}
+{% endfor %}
+</div>
+{%- endif %}
+
+
+{% if homepage.display_projects_section and homepage.homepage_items_group%}			
+<section class="section bg-color-light border-0 pb-0 m-0">
+	{% if homepage.projects_section_title%}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center appear-animation" data-appear-animation="fadeInUpShorter">
+				<h2 class="font-weight-normal text-6 pb-2 mb-4">{{ _(homepage.projects_section_title or "") }}</h2>
+				<div class="divider divider-secondary divider-small divider-small-center mb-3">
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endif %}
+	<div class="image-gallery sort-destination full-width mb-0">
+	{% for items_group in homepage.homepage_items_group %}
+		<div class="isotope-item">
+			<div class="image-gallery-item mb-0 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="{{ loop.index }}00">
+				<a href="{{ items_group.route or "" | abs_url }}">
+					<span class="thumb-info thumb-info-centered-info thumb-info-no-borders thumb-info-hide-info-hover">
+						<span class="thumb-info-wrapper">
+							<img src="{{  frappe.utils.quoted(items_group.image or "") | abs_url }}" class="img-fluid" alt="">
+							<span class="thumb-info-title">
+								<span class="thumb-info-inner">{{ _(items_group.item_group_name or "") }}</span>
+								{% if items_group.territory or items_group.unit_usage %}<span class="thumb-info-type">{{ _(items_group.territory or "") }}{% if items_group.territory %} - {% endif %}{{ _(items_group.unit_usage or "") }}</span>{% endif %}
+							</span>
+							<span class="thumb-info-action">
+								<span class="thumb-info-action-icon"><i class="fas fa-plus"></i></span>
+							</span>
+						</span>
+					</span>
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+</section>
+{% endif %}
+
+{% if homepage.display_why_us_section and homepage.why_us_items%}
+<section class="section section-no-border custom-section-spacement-1 bg-color-tertiary m-0 mt-5">
+	<div class="container">
+	{% if homepage.why_us_section_title%}
+		<div class="row text-center">
+			<div class="col">
+				<h2 class="text-uppercase text-color-dark font-weight-bold">{{ _(homepage.why_us_section_title or "") }}</h2>
+				{% if homepage.why_us_section_description%}<p  class="text-4 text-color-dark mb-5">{{ _(homepage.why_us_section_description or "") }}</p>{% endif %}
+			</div>
+		</div>
+	{% endif %}
+		{% for why_us_items in homepage.why_us_items %}
+		{% if loop.index==1 %}<div class="row text-center">{% endif %}
+			<div class="col-md-{{ (12/homepage.count_why_us_items_in_row) |int }} mb-4 mb-md-0">
+					{% if why_us_items.image_icon%}<img src='{{  frappe.utils.quoted(why_us_items.image_icon or "") | abs_url }}' class="img-fluid custom-center-img-fluid mb-3" alt />{% endif %}
+					<h4 class="text-uppercase font-weight-bold mb-4">{{ _(why_us_items.services_name or "") }}</h4>
+					<p class="custom-text-color-1 mb-0">{{ _(why_us_items.description or "") }}</p>	
+				
+			</div>
+			{% if loop.index%homepage.count_why_us_items_in_row ==0 %}</div><div class="row text-center">{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+</section>
+{% endif %}			
+
+{% if homepage.display_products_section and homepage.homepage_products_items%}
+<section class="section bg-color-light border-0 pb-0 m-0">
+{% if homepage.products_section_title%}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center appear-animation" data-appear-animation="fadeInUpShorter">
+				<h2 class="font-weight-normal text-6 pb-2 mb-4">{{ _(homepage.products_section_title or "") }}</h2>
+				<div class="divider divider-secondary divider-small divider-small-center mb-3">
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+	<div class="image-gallery sort-destination full-width mb-0">
+	{% for products_items in homepage.homepage_products_items %}
+		<div class="isotope-item">
+			<div class="image-gallery-item mb-0 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="{{ loop.index }}00">
+				<a href="{{ products_items.route or "" | abs_url }}">
+					<span class="thumb-info thumb-info-centered-info thumb-info-no-borders thumb-info-hide-info-hover">
+						<span class="thumb-info-wrapper">
+							<img src="{{  frappe.utils.quoted(products_items.image or "") | abs_url }}" class="img-fluid" alt="">
+							<span class="thumb-info-title">
+								<span class="thumb-info-inner">{{ _(products_items.item_name or "") }}</span>
+								{% if products_items.territory or products_items.unit_usage %}<span class="thumb-info-type">{{ _(products_items.territory or "") }}{% if products_items.territory %} - {% endif %}{{ _(products_items.unit_usage or "") }}</span>{% endif %}
+							</span>
+							<span class="thumb-info-action">
+								<span class="thumb-info-action-icon"><i class="fas fa-plus"></i></span>
+							</span>
+						</span>
+					</span>
+				</a>
+			</div>
+		</div>
+	{% endfor %}
+	</div>
+</section>
+{% endif %}				
+
+{% if homepage.display_partners_section and homepage.website_partners_items%}	
+<section class="section bg-color-light border-0 pb-0 m-0">
+{% if homepage.partners_section_title%}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center appear-animation" data-appear-animation="fadeInUpShorter">
+				<h2 class="font-weight-normal text-6 pb-2 mb-4">{{ _(homepage.partners_section_title or "") }}</h2>
+				<div class="divider divider-secondary divider-small divider-small-center mb-3">
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-lg-12 text-center appear-animation" data-appear-animation="fadeInUpShorter">
+				<div class="owl-carousel owl-theme show-nav-hover owl-loaded owl-drag owl-carousel-init" data-plugin-options="{'items': {{ homepage.count_partners_item_display or 4 }}, 'autoplay': true, 'autoplayTimeout': 3000, 'nav': true}">
+				{% for partners_items in homepage.website_partners_items %}
+				<div>
+					{% if partners_items.route%}<a href="{{ partners_items.route or "" | abs_url }}" {{ partners_items.target or '' }}>{% endif %}<img class="img-fluid" src="{{  frappe.utils.quoted(partners_items.partners_image or "") | abs_url }}" alt="{{ _(partners_items.partners_name or "") }}">{% if partners_items.route%}</a>{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+			</div>
+		</div>
+	</div>	
+</section>
+{% endif %}
+{% endblock %}

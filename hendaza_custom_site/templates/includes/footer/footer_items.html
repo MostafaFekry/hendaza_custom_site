@@ -1,0 +1,18 @@
+{% for page in footer_items %}
+	{% if not page.parent_label -%}
+		<div class="col mb-4 mb-lg-0 text-center text-lg-left pt-3">
+		{%- if page.child_items -%}
+			<h5 class="text-5 text-transform-none font-weight-semibold text-color-light mb-4" data-label='{{ _(page.label) }}'>{{ _(page.label) }}</h5>
+			<ul class="list list-icons list-icons-sm d-inline-flex flex-column">
+			{%- for child in page.child_items -%}
+				<li class="text-4 mb-2" data-label='{{ _(child.label) }}'>
+				<i class="fas fa-angle-right"></i><a href="{{ child.url | abs_url }}" {% if child.target %}target="_blank"{% endif %} class="link-hover-style-1 ml-1"> {{ _(child.label) }}</a>
+				</li>
+			{%- endfor -%}
+			</ul>
+		{%- else -%}
+		<a href="{{ (page.url or '')|abs_url }}" {{ page.target or ''}}><h5 class="text-5 text-transform-none font-weight-semibold text-color-light mb-4" data-label='{{ _(page.label) }}'>{{ _(page.label) }}</h5></a>
+		{%- endif -%}
+		</div>
+	{%- endif -%}
+{% endfor %}

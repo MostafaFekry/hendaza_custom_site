@@ -1,0 +1,73 @@
+{
+ "autoname": "hash",
+ "creation": "2019-09-07 03:05:20.349392",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_group_name",
+  "section_break_2",
+  "image",
+  "route",
+  "territory",
+  "unit_usage"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_group_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item Group Name",
+   "options": "Item Group",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "item_group_name.image",
+   "fieldname": "image",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Image",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_group_name.route",
+   "fieldname": "route",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Route",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_group_name.territory",
+   "fieldname": "territory",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Territory",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "item_group_name.unit_usage",
+   "fieldname": "unit_usage",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Unit Usage",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2019-09-07 03:05:20.349392",
+ "modified_by": "Administrator",
+ "module": "Hendaza Custom Site",
+ "name": "Homepage Items Group",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

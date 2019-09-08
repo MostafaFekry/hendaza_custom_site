@@ -1,0 +1,26 @@
+<!-- post login tools -->
+{% if not only_static %}
+<li class="dropdown" >
+	<a class="dropdown-item dropdown-toggle full-name" href="#"></a>
+	<ul class="dropdown-menu">
+		<li class="back-button">
+			<a class="dropdown-item full-name"></a>
+		</li>
+		{%- for child in post_login -%}
+		<li {% if child.label %}data-label="{{ child.label }}" {% endif %}>
+		{%- if child.url -%}
+			<a class="dropdown-item" href="{{ child.url | abs_url }}" {{ child.target or '' }}>{{ _(child.label) }}</a>
+		{%- endif -%}
+		</li>
+		{%- endfor -%}
+		<li>
+			<a class='dropdown-item switch-to-desk hidden' href="/desk">{{ _('Switch To Desk') }}</a>
+		</li>
+	</ul>
+</li>
+{% if not hide_login %}
+<li  data-label='Sign In' class="nav"><a class="nav-link {% if '/'+path == '/login' %} active{% endif %}" href="/login">{{ _("Sign In") }}</a></li>
+{% endif %}
+{% endif %}
+
+
